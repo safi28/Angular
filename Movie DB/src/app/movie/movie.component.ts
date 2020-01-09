@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, EventEmitter, Output } from "@angular/core";
+import { Component, OnInit, Input } from "@angular/core";
 import Movie from "../models/Movie";
 
 @Component({
@@ -14,7 +14,7 @@ export class MovieComponent implements OnInit {
   constructor() {}
 
   ngOnInit() {
-    this.imagePath = "https://image.tmdb.org/t/p/w500" + this.movie.poster_path;
+    this.imagePath = "https://image.tmdb.org/t/p/w500" + this.movie.poster_path;    
   }
 
 }

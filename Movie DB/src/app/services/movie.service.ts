@@ -3,14 +3,19 @@ import { HttpClient } from "@angular/common/http";
 import Movie from "src/app/models/Movie";
 import { Observable } from "rxjs/internal/Observable";
 import { tap, map } from "rxjs/operators";
+import MovieDetails from "../models/Movie-details";
 
 const BASE_URL = "https://api.themoviedb.org/3/";
 const IN_THEATRES =
   "discover/movie?primary_release_date.gte=2019-03-01&primary_release_date.lte=2019-04-30";
 const POPULAR = "discover/movie?sort_by=popularity.desc";
-const KIDS ="discover/movie?certification_country=US&certification.lte=G&sort_by=popularity.desc";
-const DRAMA = "discover/movie?with_genres=18&sort_by=vote_average.desc&vote_count.gte=10";
-const API_KEY = "&api_key=44b7f5fe7ef512937b25aeb752852c59";
+const KIDS =
+  "discover/movie?certification_country=US&certification.lte=G&sort_by=popularity.desc";
+const DRAMA =
+  "discover/movie?with_genres=18&sort_by=vote_average.desc&vote_count.gte=10";
+
+  const API_KEY = "&api_key=44b7f5fe7ef512937b25aeb752852c59";
+const API_KEY_ALT = "?api_key=44b7f5fe7ef512937b25aeb752852c59";
 
 @Injectable({
   providedIn: "root"
@@ -40,5 +45,23 @@ export class MovieService {
     return this.http
       .get<Movie[]>(BASE_URL + DRAMA + API_KEY)
       .pipe(map(data => data["results"].slice(0, 6)));
+  }
+
+  getMovies(url: string) {
+    return this.http
+      .get<Movie[]>(url)
+      .pipe(map(data => data["results"].slice(0, 6)));
+  }
+
+  getMovieById(id: string) {
+    
+    return this.http.get<MovieDetails>(BASE_URL + `movie/${id}` + API_KEY_ALT);
+  }
+
+  searchMovie(query: string) {
+    
+    return this.http.get<Movie[]>(
+      BASE_URL + "search/movie" + API_KEY_ALT + `&query=${query}`
+    );
   }
 }

@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { MovieService } from "../services/movie.service";
 import Movie from "../models/Movie";
 import { Subscription } from "rxjs";
+import { ActivatedRoute } from "@angular/router";
 
 @Component({
   selector: "app-movies",
@@ -16,26 +17,14 @@ export class MoviesComponent implements OnInit {
   popularMoviesSub: Subscription;
   singleMovie: Movie;
 
-  constructor(private moviesService: MovieService) {}
+  constructor(private route: ActivatedRoute) {}
 
   ngOnInit() {
-    this.popularMoviesSub = this.moviesService
-      .getPopularMovies()
-      .subscribe(data => {
-        this.popularMovies = data;
-      });
-    this.moviesService.getInTheatersMovies().subscribe(data => {
-      this.inTheaterMovies = data;
-    });
-    this.moviesService.getPopularKidsMovies().subscribe(data => {
-      this.popularKidsMovies = data;
-    });
-    this.moviesService.getBestDramaMovies().subscribe(data => {
-      this.bestDramaMovies = data;
-    });
-  }
+    const [drama, kids, popular, theaters] = this.route.snapshot.data["movies"];
 
-  ngOnDestroy() {
-    this.popularMoviesSub.unsubscribe();
+    this.bestDramaMovies = drama;
+    this.popularKidsMovies = kids;
+    this.popularMovies = popular;
+    this.inTheaterMovies = theaters;
   }
 }
