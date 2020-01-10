@@ -1,7 +1,7 @@
 # Angular
 SoftUni course
 # 
-This projects were generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.21.
+These projects were generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.21.
 
 ## Development server
 
