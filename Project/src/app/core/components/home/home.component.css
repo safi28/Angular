@@ -1,0 +1,20 @@
+.hero {
+  background-image: url("../../../../assets/img/winter.jpg");
+  background-size: cover;
+  height: 766px;
+  background-repeat: no-repeat;
+
+}
+
+/* 
+.hero {
+  background-image: url("../../../../assets/img/canyon.jpg");
+  background-size: 100%;
+  display: block;
+  position: static;
+  float: none;
+  height: 750px;
+  background-repeat: no-repeat;
+  margin: 0px;
+
+} */
