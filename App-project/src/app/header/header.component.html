@@ -1,0 +1,12 @@
+<mat-toolbar class="black" >
+    <span>
+     <a routerLink="/"> <img src="../../assets/img/logo.jpg" class="angular-logo">
+      Angular NavBar
+    </a>
+    </span>
+
+    <span class="fill-remaining-space"></span>
+    <button mat-button>Menu Option 01</button>
+    <button mat-button>Menu Option 02</button>
+    <button mat-button routerLink="login" >Login</button>
+    <button mat-button (click)="onLogout()">Logout</button>  </mat-toolbar>
