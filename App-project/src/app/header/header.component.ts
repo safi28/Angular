@@ -1,6 +1,9 @@
 import { Component, OnInit } from "@angular/core";
 import { AuthService } from "../auth/auth.service";
 import { Observable } from "rxjs";
+import { FormGroup, FormBuilder, Validators } from "@angular/forms";
+import { AngularFireAuth } from "@angular/fire/auth";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "app-header",
@@ -8,15 +11,34 @@ import { Observable } from "rxjs";
   styleUrls: ["./header.component.css"]
 })
 export class HeaderComponent implements OnInit {
-  isLoggedIn$: Observable<boolean>;
+  isLoggedIn: FormGroup;
 
-  constructor(private authService: AuthService) {}
+  constructor(
+    af: AngularFireAuth,
+    private authService: AuthService,
+    private fb: FormBuilder,
+    private router: Router
+  ) {}
 
   ngOnInit() {
-    // this.isLoggedIn$ = this.authService.login;
+    this.isLoggedIn = this.fb.group({
+      email: ["", Validators.required],
+      password: ["", Validators.required]
+    });
   }
 
-  // onLogout() {
-  //   this.authService.logout();
-  // }
+  get isLogged() {
+    const user = this.authService.iSLoggedIn;
+    if (this.authService.iSLoggedIn) {
+    //  this.router.navigate(["/register"]);
+      return true;
+    }
+    return false;
+  }
+
+  onLogout() {
+    localStorage.removeItem("user");
+
+    this.authService.doLogout();
+  }
 }

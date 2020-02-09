@@ -25,6 +25,7 @@ import { AngularFirestoreModule } from "@angular/fire/firestore";
 import { environment } from "../environments/environment";
 
 import { CoreModule } from "./core/core.module";
+import { LoggedHomeComponent } from './authentication/logged-home/logged-home.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { CoreModule } from "./core/core.module";
     HomeComponent,
     LoginComponent,
     RegisterComponent,
+    LoggedHomeComponent,
   ],
   imports: [
     BrowserModule,

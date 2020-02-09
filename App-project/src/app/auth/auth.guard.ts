@@ -13,11 +13,12 @@ private authService: AuthService
 ) {}
  
 canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-const currentUser = this.authenticationService.currentUser;
-if (currentUser) {  
-// authorised so return true
-return true;
-}
+    if(this.authService.iSLoggedIn === true) {
+      return true
+      }
+      this.router.navigate(['/login'])
+      return false
+
  
 // not logged in so redirect to login page
 this.router.navigate(['/login'], { queryParams: { returnUrl: state.url }});

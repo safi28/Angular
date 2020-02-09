@@ -19,7 +19,6 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private route: ActivatedRoute,
     private router: Router,
     private authenticationService: AuthService,
     private toastr: ToastrService
@@ -60,7 +59,6 @@ export class LoginComponent implements OnInit {
 
   tryLogin(value) {
     this.authenticationService.doLogin(value).then(res => {
-      console.log(res);
       this.toastr.success('Successfully logged in!');
       this.router.navigate(['/'])
       

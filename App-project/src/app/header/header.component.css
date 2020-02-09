@@ -14,3 +14,19 @@ mat-toolbar.black{
 
   }
 
+.icon {
+  width: 10%;
+  height: 10%;
+  position: relative;
+  left: 395px;
+}
+
+.auth {
+  right: 100%;
+}
+.logout {
+  left: 395px;
+}
+/* .black {
+  position: fixed;
+} */
