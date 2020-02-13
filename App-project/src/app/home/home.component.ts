@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../auth/auth.service';
+import { UserService } from '../user/user.service';
 
 @Component({
   selector: 'app-home',
@@ -7,12 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
   public currentUser;
-  constructor() {
-    this.currentUser = localStorage.getItem('currentUser') ? JSON.parse(localStorage.getItem('currentUser')) : ''
+  constructor(private user: AuthService) {
+    this.currentUser = localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user')) : ''    
    }
   
 
   ngOnInit() {
   }
 
-}
+  get loggedUser() {
+    
+    return this.user.iSLoggedIn
+  }
+ }

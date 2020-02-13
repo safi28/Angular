@@ -1,8 +1,7 @@
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
 
-import { AppRoutingModule } from './app-routing.module';
-//import { AppRoutingModule } from "../app/shared/routing/app-routing.module";
+import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { HeaderComponent } from "./header/header.component";
 import { HomeComponent } from "./home/home.component";
@@ -12,7 +11,7 @@ import {
   BrowserAnimationsModule
 } from "@angular/platform-browser/animations";
 import { AppMaterialModule } from "./app-material/app-material.module";
-import { ReactiveFormsModule } from "@angular/forms";
+import { ReactiveFormsModule, FormsModule } from "@angular/forms";
 
 import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { InterceptorService } from "./_services/interceptor.service";
@@ -25,7 +24,16 @@ import { AngularFirestoreModule } from "@angular/fire/firestore";
 import { environment } from "../environments/environment";
 
 import { CoreModule } from "./core/core.module";
-import { LoggedHomeComponent } from './authentication/logged-home/logged-home.component';
+import { LoggedHomeComponent } from "./authentication/logged-home/logged-home.component";
+
+import { UserModule } from "./user/user.module";
+import { ArticlesModule } from "./articles/articles.module";
+import { RouteReuseStrategy, RouterModule } from "@angular/router";
+
+import { AngularFireAuthGuard } from "@angular/fire/auth-guard";
+import { AuthGuard } from "./auth/auth.guard";
+import { AuthService } from "./auth/auth.service";
+import { RegisterModule } from './register/register.module';
 
 @NgModule({
   declarations: [
@@ -34,11 +42,13 @@ import { LoggedHomeComponent } from './authentication/logged-home/logged-home.co
     HomeComponent,
     LoginComponent,
     RegisterComponent,
-    LoggedHomeComponent,
+    LoggedHomeComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
+    ArticlesModule,
+    UserModule,
+    CoreModule,
     NoopAnimationsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
@@ -49,10 +59,10 @@ import { LoggedHomeComponent } from './authentication/logged-home/logged-home.co
     AngularFireAuthModule,
     AngularFirestoreModule,
     ReactiveFormsModule,
-    CoreModule
+    AppRoutingModule,
+    FormsModule,
   ],
   providers: [
-    UserService,
     { provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true }
   ],
   bootstrap: [AppComponent]

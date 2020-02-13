@@ -1,52 +1,3 @@
-<!-- <form [formGroup]="registerForm">
-<div class="form-group">
-<label for="firstName">First Name</label>
-<input type="text" formControlName="firstName" class="form-control" [ngClass]="{ 'is-invalid': submitted && fval.firstName.errors }" placeholder="Enter First Name here"/>
-<div *ngIf="submitted && fval.firstName.errors" class="invalid-feedback">
-<div *ngIf="fval.firstName.errors.required">First Name is required</div>
-</div>
-</div>
- 
-<div class="form-group">
-<label for="lastName">Last Name</label>
-<input type="text" formControlName="lastName" class="form-control" placeholder="Enter Last Name here"/>
-</div>
-<div class="form-group">
-<label for="email">Email</label>
-<input type="text" formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && fval.email.errors }" placeholder="Enter email here"/>
-<div *ngIf="submitted && fval.email.errors" class="invalid-feedback">
-<div *ngIf="fval.email.errors.required">Email is required</div>
-<div *ngIf="fval.email.errors.email">Enter valid email address</div>
-</div>
-</div>
-<div class="form-group">
-<label for="email">Phone</label>
-<input type="text" formControlName="phone" class="form-control" [ngClass]="{ 'is-invalid': submitted && fval.phone.errors }" placeholder="Enter Phone here"/>
-<div *ngIf="submitted && fval.phone.errors" class="invalid-feedback">
-<div *ngIf="fval.phone.errors.required">Phone is required</div>
-</div>
-</div>
- 
-<div class="form-group">
-<label for="email">Password</label>
-<input type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && fval.password.errors }" placeholder="Enter Password here"/>
-<div *ngIf="submitted && fval.password.errors" class="invalid-feedback">
-<div *ngIf="fval.password.errors.required">Password is required</div>
-<div *ngIf="fval.password.errors.minlength">Password must be at least 6 characters</div>
-</div>
- 
-</div>
- 
-<div class="form-group">
-<button [disabled]="loading" class="btn btn-primary">
-<span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
-Register
--->
-<!-- </button>
-<button type="submit" (click)="tryRegister(registerForm.value)" class="btn btn-default">Register</button>
-<a routerLink="/login" class="btn btn-link">Login to continue</a>
-</div>
-</form>  -->
 <div class="col-md-4"></div>
 <div class="col-md-4">
   <h3>User Registration</h3>
@@ -80,6 +31,26 @@ Register
       />
       <div class="error"></div>
       <label class="success">{{ successMessage }}</label>
+    </div>
+
+    <div class="form-group">
+      <input
+        formControlName="male"
+        type="radio"
+        id="gender"
+        [value]="'Male'"
+        name="male"
+        (click)="setGender('Male')"
+      />
+      Male
+      <input
+        formControlName='female'
+        type="radio"
+        [value]="'Female'"
+        name="female"
+        (click)="setGender('Female')"
+      />
+      Female
     </div>
     <button
       type="submit"

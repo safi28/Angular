@@ -5,29 +5,23 @@ import { AngularFireAuth } from "@angular/fire/auth";
 import * as firebase from "firebase/app";
 import { Router } from "@angular/router";
 import { ToastrService } from "ngx-toastr";
+import { UserService } from '../user/user.service';
+import { AngularFirestoreDocument, AngularFirestore } from '@angular/fire/firestore';
 
 @Injectable({
   providedIn: "root"
 })
 export class AuthService {
-  //public currentUser: Observable<User>;
   private currentUserSubject: BehaviorSubject<User>;
   userData: any;
 
   constructor(
     public afAuth: AngularFireAuth,
     private toastr: ToastrService,
-    private router: Router
+    private router: Router,
   ) {
+
   }
-
-  // get authenticated(): boolean {
-  //   return this.authState !== null;
-  // }
-
-  // get currentUser(): any {
-  //   return this.authenticated ? this.authState : null;
-  // }
 
   doRegister(value: any) {
     return new Promise<any>((resolve, reject) => {
@@ -36,6 +30,8 @@ export class AuthService {
         .createUserWithEmailAndPassword(value.email, value.password)
         .then(
           res => {
+            console.log(res);
+            
             resolve(res);
           },
           err => reject(err)
@@ -53,6 +49,8 @@ export class AuthService {
             this.afAuth.authState.subscribe(user => {
               if (user) {
                 this.userData = user;
+                console.log(user);
+                
         
                 localStorage.setItem("user", JSON.stringify(this.userData));
                 JSON.parse(localStorage.getItem("user"));
@@ -71,8 +69,6 @@ export class AuthService {
   doLogout() {
     return this.afAuth.auth.signOut().then(
       () => {
-        localStorage.removeItem("user");
-        this.currentUserSubject.next(null);
 
         this.toastr.success("Log out successfully!");
         this.router.navigate(["/"]);
@@ -85,40 +81,8 @@ export class AuthService {
 
   get iSLoggedIn(): boolean {
     const user = JSON.parse(localStorage.getItem("user"));
-    return user !== null && user.email !== null ? true : false;
+    
+    return user !== null  ? true : false;
   }
-
-  logout() {
-    localStorage.removeItem("currentUser");
-    this.currentUserSubject.next(null);
-  }
-
-  // export class AuthService {
-  //  private currentUserSubject: BehaviorSubject<User>;
-  // public currentUser: Observable<User>;
-
-  // constructor(private http: HttpClient, public afAuth: AngularFireAuth) {
-  //   this.currentUserSubject = new BehaviorSubject<User>(
-  //     JSON.parse(localStorage.getItem("currentUser"))
-  //   );
-  //   this.currentUser = this.currentUserSubject.asObservable();
-  // }
-
-  // public get currentUserValue(): User {
-  //   return this.currentUserSubject.value;
-  // }
-
-  // login(email: string, password: string) {
-  //   return this.http
-  //     .post<any>(`auth/login`, { email, password })
-  //     .pipe(
-  //       map(user => {
-  //         if (user && user.token) {
-  //           localStorage.setItem("currentUser", JSON.stringify(user.result));
-  //           this.currentUserSubject.next(user);
-  //         }
-  //         return user;
-  //       })
-  //     );
-  // }
+ 
 }

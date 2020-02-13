@@ -28,17 +28,11 @@ export class HeaderComponent implements OnInit {
   }
 
   get isLogged() {
-    const user = this.authService.iSLoggedIn;
     if (this.authService.iSLoggedIn) {
-    //  this.router.navigate(["/register"]);
+    //this.router.navigate(["/dashboard"]);
       return true;
     }
     return false;
   }
 
-  onLogout() {
-    localStorage.removeItem("user");
-
-    this.authService.doLogout();
-  }
 }

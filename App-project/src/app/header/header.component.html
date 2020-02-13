@@ -10,10 +10,8 @@
   <div class="col-md-4">
     <form [formGroup]="isLoggedIn">
       <span class="fill-remaining-space"></span>
-      <button mat-button>Menu Option 01</button>
       <button mat-button>Menu Option 02</button>
 
-      <!-- <span class="auth"> -->
       <span *ngIf="!isLogged">
         <button mat-button routerLink="login">Login</button>
         <button mat-button routerLink="register">Register</button>
@@ -21,13 +19,17 @@
 
       <span *ngIf="isLogged">
         <span class="logout">
-          <button mat-button (click)="onLogout()" class="logged">Logout</button>
+          <a routerLink="/article/create" routerLinkActive="active">Create article</a>
+          <!-- <a routerLink="/dashboard" routerLinkActive="active">Create article</a> -->
+
+          <!-- <button mat-button (click)="onLogout()" class="logged">Logout</button> -->
         </span>
-        <a routerLink="/login"
+        <a routerLink="user"
           ><img src="../../assets//img/icon.png" class="icon"
         /></a>
       </span>
-      <!-- </span> -->
     </form>
   </div>
+
 </mat-toolbar>
+
