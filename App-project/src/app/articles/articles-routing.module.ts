@@ -3,6 +3,7 @@ import { Routes, RouterModule } from "@angular/router";
 import { CreateComponent } from "./create/create.component";
 import { AuthGuard } from "../auth/auth.guard";
 import { DetailComponent } from "./detail/detail.component";
+import { ListComponent } from "./list/list.component";
 
 const routes: Routes = [
   {
@@ -32,7 +33,8 @@ const routes: Routes = [
         }
       }
     ]
-  }
+  },
+  { path: "list", component: ListComponent }
 ];
 @NgModule({
   imports: [RouterModule.forChild(routes)],

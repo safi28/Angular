@@ -1,0 +1,53 @@
+.div-one {
+  background:red;
+  width: 100vw;
+  height: 91vh;
+   background: url('http://farm1.staticflickr.com//447//19585243302_fae38fd86f_o.jpg');
+  width: 100vw;
+  height: 91vh;
+  background-repeat:no-repeat;
+  background-size:cover;
+  background-position:center;
+}
+
+.div-two {
+  -webkit-clip-path: polygon(100vw 0, 0% 100%, 100vw 91vh);
+  clip-path: polygon(100vw 0, 0% 91vh, 100vw 91vh);
+  background: url('https://farm9.staticflickr.com/8644/15964625458_d5c6d431ac_k.jpg');
+  width: 100vw;
+  height: 91vh;
+  background-repeat:no-repeat;
+  background-size:cover;
+  background-position:bottom;
+}
+
+body {
+  margin: 0;
+}
+div {
+  position: absolute;
+}
+
+/* Decoration */
+
+.overlay {
+  width: 100vw;
+  height: 91vh;
+  background: rgba( 0, 0, 0, 0.3)
+}
+
+.box {
+  position: absolute; 
+  top: 100%; 
+  left: 400px; 
+  /* right: 100%; */
+  transform:translate(20%, 20%); 
+  text-align: center; color: rgba(250, 250, 250, 0.8); 
+  border: 4px double rgba(250, 250, 250, 0.2)
+}
+
+.box h1 {
+  font-size: 11vh; 
+  padding: 1 0em; 
+  font-family: Quicksand;
+}

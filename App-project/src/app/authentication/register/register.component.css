@@ -1,0 +1,20 @@
+.jumbotron {
+    background-image: url('../../../assets/img/login.png');
+    background-repeat: no-repeat;
+    width: 1524px;
+    height: 680px;
+    background-size: cover;
+    
+}
+
+.text-center {
+    color: white;
+}
+
+h4 {
+    color: white;
+}
+.gen {
+    color: white;
+}
+

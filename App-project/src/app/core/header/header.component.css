@@ -1,0 +1,37 @@
+.angular-logo {
+    margin: 0 4px 3px 0;
+    height: 40px;
+    width: 40px;
+    vertical-align: middle;
+  }
+  .logoImg {
+    text-decoration: none;
+  }
+.fill-remaining-space {
+  flex: 1 1 auto;
+}
+
+mat-toolbar.black{
+    background-color: rgb(7, 0, 0);
+    color: rgb(255, 255, 255);
+
+  }
+
+.icon {
+  width: 8%;
+  height: 8%;
+  position: relative;
+  left: 200px;
+}
+
+.auth {
+  right: 90%;
+}
+.logout {
+  left: 380px;
+  color: wheat;
+  text-decoration: none;
+}
+/* .black {
+  position: fixed;
+} */

@@ -26,6 +26,7 @@ export class AuthGuard implements CanActivate {
     //   });
     // }
     // return true;
+    
     return this.userService.isLogged === route.data.isLogged
   }
 }

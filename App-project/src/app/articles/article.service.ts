@@ -2,20 +2,20 @@ import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Article } from "../models/article";
 import { tap } from "rxjs/operators";
+import { AngularFireDatabase, AngularFireList } from "@angular/fire/database";
 
 @Injectable({
   providedIn: "root"
 })
 export class ArticleService {
-  articles: Article[];
-  constructor(private http: HttpClient) {}
+  booksRef: AngularFireList<any>;
 
-  load(id?: number) {
-    return this.http
-      .get<Article[] | Article>(
-        `http://localhost:3000/article${id ? `/${id}` : ""}`
-      )
-      .pipe(tap(causes => (this.articles = [].concat(causes))));
+  articles: Article[];
+  constructor(private http: HttpClient, private db: AngularFireDatabase) {}
+
+  load() {
+    this.booksRef = this.db.list("/travel");
+    return this.booksRef;
   }
 
   selectArticle(article: Article) {

@@ -1,8 +1,8 @@
 export interface Article {
-  _id: string;
-  cause: string;
+  id: string;
+  // article: string;
+  key: string;
+
   description: string;
-  neededAmount: number;
-  collectedAmount: number;
   imageUrl: string;
 }
