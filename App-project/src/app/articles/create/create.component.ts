@@ -1,28 +1,37 @@
-import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Component, OnInit } from "@angular/core";
+import { FormGroup, FormBuilder, Validators } from "@angular/forms";
+import { ArticleService } from "../article.service";
+import { Article } from "src/app/models/article";
+import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-create',
-  templateUrl: './create.component.html',
-  styleUrls: ['./create.component.css']
+  selector: "app-create",
+  templateUrl: "./create.component.html",
+  styleUrls: ["./create.component.css"]
 })
 export class CreateComponent implements OnInit {
-
   form: FormGroup;
+  
 
-  constructor(private fb: FormBuilder) {
+  constructor(
+    private fb: FormBuilder,
+    private articleService: ArticleService,
+    private router: Router
+  ) {}
+
+  ngOnInit() {
     this.form = this.fb.group({
-      cause: ['', [Validators.required]],
-      neededAmount: [null, [Validators.required, Validators.min(10)]],
-      description: ['', Validators.required],
-      imageUrl: ['', Validators.required]
+      article: ["", [Validators.required]],
+      description: ["", Validators.required],
+      imageUrl: ["", Validators.required]
     });
   }
 
-  ngOnInit() {
-  }
-
-  createCauseHandler() {
-    console.log(this.form.value);
+  createArticleHandler(article) {
+    console.log(article);
+    
+    this.articleService.createArticle(article);
+    this.router.navigate(['list'])
+    
   }
 }

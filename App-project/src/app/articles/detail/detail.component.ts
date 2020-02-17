@@ -9,30 +9,29 @@ import { ActivatedRoute } from "@angular/router";
   styleUrls: ["./detail.component.css"]
 })
 export class DetailComponent implements OnInit {
-  // @ViewChild("amountInput", { static: false }) amountInput: ElementRef<
-  //   HTMLInputElement
-  // >;
-
-  @Input() selectArticles: Article;
+  @Input() selectArticles2: Article;
 
   isRouteComponent = false;
 
-  get selectedCause() {
-    return this.articlesService.selectArticle;
+  get selectedArticle() {
+    // console.log(this.articlesService.selectedArticle);
+
+    return this.articlesService.selectedArticle;
   }
+
   constructor(
     private activatedRoute: ActivatedRoute,
-    private articlesService: ArticleService
-  ) {}
+    private articlesService: ArticleService,
+    travel: string
+  ) {
+    this.isRouteComponent = this.activatedRoute.snapshot.data.title;
+  }
 
   ngOnInit() {
-    // if (this.isRouteComponent) {
-    //   this.articlesService
-    //     .load(+this.activatedRoute.snapshot.params.id)
-    //     .subscribe((cause: Article) => {
-    //       // if (!cause) { this.router.navigate([]); }
-    //       this.articlesService.selectArticle(cause);
-    //     });
-    // }
+    if (this.isRouteComponent) {
+    }
+    this.articlesService.loadIdArticle().subscribe(a => {
+      console.log(a);
+    });
   }
 }

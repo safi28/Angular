@@ -7,10 +7,11 @@ import { AuthService } from "../../auth/auth.service";
 @Component({
   selector: "app-login",
   templateUrl: "./login.component.html",
-  styleUrls: ['../../../errors-message.css']
+  styleUrls: ["../../../errors-message.css"]
 })
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
+  userData: any;
 
   loading = false;
   submitted = false;
@@ -31,15 +32,17 @@ export class LoginComponent implements OnInit {
   }
 
   tryLogin(value) {
-    this.authenticationService.doLogin(value).then(res => {
-      this.toastr.success('Successfully logged in!');
-      this.router.navigate(['/dashboard'])      
-    }, err => {
-      
-      this.toastr.error(err.error,'Error')
-      this.loading = false
-    })
+    this.authenticationService.doLogin(value).then(
+      res => {
+        localStorage.setItem("user", JSON.stringify({ value }));
 
+        this.toastr.success("Successfully logged in!");
+        this.router.navigate(["/dashboard"]);
+      },
+      err => {
+        this.toastr.error(err.error, "Error");
+        this.loading = false;
+      }
+    );
   }
-  
 }

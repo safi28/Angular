@@ -4,6 +4,7 @@ import { Router } from "@angular/router";
 import { ToastrService } from "ngx-toastr";
 import { AuthService } from "../../auth/auth.service";
 import { AngularFirestore } from "@angular/fire/firestore";
+import { UserService } from '../../user/user.service'
 
 @Component({
   selector: "app-register",
@@ -23,14 +24,15 @@ export class RegisterComponent implements OnInit {
     private router: Router,
     private toastr: ToastrService,
     private authService: AuthService,
-    private afs: AngularFirestore
+    private afs: AngularFirestore,
+    private userInfo: UserService
   ) {}
   loading = false;
   submitted = false;
 
   ngOnInit() {
     this.registerForm = this.fb.group({
-      firstName: ["", Validators.required],
+      displayName: ["", Validators.required],
       lastName: ["", Validators.required],
       phone: ["", Validators.required],
       email: ["", [Validators.required]],
@@ -60,5 +62,13 @@ export class RegisterComponent implements OnInit {
         this.toastr.error(error.error, "Error");
       }
     );
+  }
+
+  get userData() {
+    // console.log(this.authService.userData);
+    console.log(this.registerForm.value);
+    
+
+    return this.authService.userData;
   }
 }

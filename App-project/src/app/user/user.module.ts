@@ -4,6 +4,8 @@ import { UserComponent } from './user/user.component';
 import { ProfileComponent } from './profile/profile.component';
 import { UserRoutingModule } from './user-routing.module';
 import { ReactiveFormsModule, FormGroup } from '@angular/forms';
+import { FooterComponent } from '../core/footer/footer.component';
+import { CoreModule } from '../core/core.module';
 
 
 @NgModule({
@@ -11,7 +13,8 @@ import { ReactiveFormsModule, FormGroup } from '@angular/forms';
   imports: [
     CommonModule,
     UserRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    CoreModule
   ]
 })
 export class UserModule { }

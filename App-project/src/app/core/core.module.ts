@@ -5,6 +5,7 @@ import { FooterComponent } from './footer/footer.component';
 import { CoreRouting } from './core-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HomeComponent } from './unLoggedHome/home.component';
+import { HeaderComponent } from './header/header.component';
 
 @NgModule({
   declarations: [LoggedHomeComponent, FooterComponent,HomeComponent],
@@ -12,7 +13,8 @@ import { HomeComponent } from './unLoggedHome/home.component';
     CommonModule,
     CoreRouting,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    CoreRouting
   ],
   exports: [FooterComponent]
 })

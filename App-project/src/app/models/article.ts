@@ -1,8 +1,8 @@
 export interface Article {
-  id: string;
+  // id: string;
   // article: string;
-  key: string;
-
+  // key: string;
+  title: string;
   description: string;
   imageUrl: string;
 }

@@ -1,3 +1,5 @@
+<p></p>
+<form [formGroup]='userForm'>
 <div class="container">
 	<div class="avatar">
 		<a>
@@ -7,7 +9,11 @@
 	<div class="content">
       <a class="nav-link" (click)="onLogout()">
         <button class="btn btn-secondary btn-lg">Log out</button>
-      </a>
+	  </a>
+	  <p>{{currentUser.firstName}}</p>
+
     
 	</div>
 </div>
+</form>
+<app-footer></app-footer>

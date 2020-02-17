@@ -19,9 +19,9 @@ export class UserComponent implements OnInit {
   constructor(
     private userService: UserService,
     private authService: AuthService,
-    private fb: FormBuilder,
-  ) {    
-    
+    private fb: FormBuilder
+  ) {
+    console.log(this.authService.currentUserValue);
   }
 
   ngOnInit() {
@@ -32,7 +32,7 @@ export class UserComponent implements OnInit {
   }
 
   get currentUser() {
-    console.log(this.userService.currentUser);
+    console.log(this.authService.currentUserValue);
 
     return this.userService.currentUser;
   }
@@ -54,6 +54,4 @@ export class UserComponent implements OnInit {
 
     this.authService.doLogout();
   }
-
-
 }

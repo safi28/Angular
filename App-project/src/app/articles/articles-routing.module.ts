@@ -8,13 +8,12 @@ import { ListComponent } from "./list/list.component";
 const routes: Routes = [
   {
     path: "article",
-    component: CreateComponent,
     children: [
-      {
-        path: "",
-        pathMatch: "full",
-        redirectTo: "'/article/create'"
-      },
+      // {
+      //   path: "article",
+      //   pathMatch: "full",
+      //   redirectTo: "'/article/create'"
+      // },
       {
         path: "create",
         component: CreateComponent,

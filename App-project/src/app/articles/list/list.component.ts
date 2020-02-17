@@ -1,4 +1,10 @@
-import { Component, OnInit, ViewChild } from "@angular/core";
+import {
+  Component,
+  OnInit,
+  ViewChild,
+  Output,
+  EventEmitter
+} from "@angular/core";
 import { Article } from "src/app/models/article";
 import { MatPaginator, MatTableDataSource } from "@angular/material";
 import { ArticleService } from "../article.service";
@@ -9,36 +15,29 @@ import { ArticleService } from "../article.service";
   styleUrls: ["./list.component.css"]
 })
 export class ListComponent implements OnInit {
-  @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
- articles: Article[]
-  dataSource: MatTableDataSource<Article>;
+  articles: any;
+  selectedArticle: Article;
+  public key: string;
 
-  constructor(private articleApi: ArticleService) {
-    // this.articleApi
-    //   .load()
-    //   .snapshotChanges()
-    //   .subscribe(articles => {
-    //     articles.forEach(item => {
-    //       let a = item.payload.toJSON();
-    //       a["key"] = item.key;          
-    //       this.BookData.push(a as Article);          
-    //     });
-    //     this.dataSource = new MatTableDataSource(this.BookData);
-    //     /* Pagination */
-    //     setTimeout(() => {
-    //       this.dataSource.paginator = this.paginator;
-    //     }, 0);
-    //   });
+  get article() {
+    return this.articleApi.articles;
   }
+
+  @Output() selectArticle: EventEmitter<Article> = new EventEmitter();
+
+  constructor(private articleApi: ArticleService) {}
 
   ngOnInit() {
-    this.articleApi.load().snapshotChanges().subscribe(data => {
-      this.articles = data.map(e => {
-        return {
-          id: e.payload.toJSON(),
-          ...e.payload.toJSON()
-        } as Article;
-      })
+    this.articleApi.loadArticle().subscribe(data => {
+      this.articles = data;
     });
   }
+
+  selectArticleHandler(article: Article) {
+    console.log(this.key);
+
+    this.articleApi.selectArticle(article);
+  }
+
+  
 }

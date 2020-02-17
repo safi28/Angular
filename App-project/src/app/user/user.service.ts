@@ -1,24 +1,24 @@
 import { Injectable } from "@angular/core";
-import { of } from "rxjs";
-import { tap } from "rxjs/operators";
+import { HttpClient } from "@angular/common/http";
 
 @Injectable({
   providedIn: "root"
 })
 export class UserService {
-  currentUser: { username: string; password: string } = null;
+  currentUser: { email: string; password: string } = null;
 
-  constructor() {
+  constructor(private http: HttpClient) {
     const currentUser = localStorage.getItem("user");
     this.currentUser = currentUser ? JSON.parse(currentUser) : null;
   }
+
   get isLogged() {
-    console.log(this.currentUser);
-    
     return !!this.currentUser;
   }
+
   logout() {
     this.currentUser = null;
     localStorage.removeItem("user");
   }
+
 }
