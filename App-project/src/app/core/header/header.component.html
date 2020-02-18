@@ -9,29 +9,9 @@
       <img src="../../assets/img/home.png" class="angular-logo" />
     </a>
   </span>
-  
+
   <span *ngIf="!isLogged">
     <button mat-button routerLink="login">Login</button>
     <button mat-button routerLink="register">Register</button>
   </span>
-
-  <!-- <div class="col-md-4"></div>
-  <div class="col-md-4">
-     <form [formGroup]="isLoggedIn">
-      <span class="fill-remaining-space"></span>
-      <button mat-button>Guide</button>
-
-      <span *ngIf='isLogged'>
-        <span class="logout">
-          <a routerLink="/article/create" routerLinkActive="active"
-            >Create article</a
-          >
-        </span>
-        <a routerLink="user"
-          ><img src="../../assets//img/icon.png" class="icon"
-        /></a>
-      </span>
-
-    </form> -->
-  <!-- </div> --> 
 </mat-toolbar>

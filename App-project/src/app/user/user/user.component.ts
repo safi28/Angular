@@ -21,7 +21,6 @@ export class UserComponent implements OnInit {
     private authService: AuthService,
     private fb: FormBuilder
   ) {
-    console.log(this.authService.currentUserValue);
   }
 
   ngOnInit() {
@@ -32,7 +31,6 @@ export class UserComponent implements OnInit {
   }
 
   get currentUser() {
-    console.log(this.authService.currentUserValue);
 
     return this.userService.currentUser;
   }

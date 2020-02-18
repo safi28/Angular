@@ -6,6 +6,7 @@ import { HttpClient } from "@angular/common/http";
 })
 export class UserService {
   currentUser: { email: string; password: string } = null;
+  name: string;
 
   constructor(private http: HttpClient) {
     const currentUser = localStorage.getItem("user");

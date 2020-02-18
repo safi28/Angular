@@ -33,7 +33,9 @@ export class ListComponent implements OnInit {
     });
   }
 
-  selectArticleHandler(article: Article) {
-    this.articleApi.selectArticle(article);
+  selectArticleHandler(id) {
+    // this.articleApi.selectArticle(article);
+    return this.articleApi.getIdArticle(id);
+
   }
 }

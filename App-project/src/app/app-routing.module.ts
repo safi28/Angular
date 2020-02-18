@@ -8,8 +8,13 @@ import { LoggedHomeComponent } from "././core/home/home.component";
 import { NotFoundComponent } from "./core/not-found/not-found.component";
 
 const routes: Routes = [
-  { path: "", pathMatch: "full", component: HomeComponent },
-  { path: "dashboard", component: LoggedHomeComponent },
+  { path: "", component: HomeComponent },
+  {
+    path: "dashboard",
+    component: LoggedHomeComponent,
+    data: { isLogged: true }
+  },
+
   {
     path: "login",
     component: LoginComponent,

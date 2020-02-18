@@ -1,9 +1,11 @@
+
 body, html {
     height: 100%;
     margin: 0;
-    padding: 0;
+    padding: 3;
     font-family: 'Helvetica', sans-serif;
     background: #1abc9c;
+    color: black;
     background: -moz-linear-gradient(-45deg, rgba(26, 188, 156, 1) 0%, rgba(142, 68, 173, 1) 100%);
     background: -webkit-linear-gradient(-45deg, rgba(26, 188, 156, 1) 0%, rgba(142, 68, 173, 1) 100%);
     background: linear-gradient(135deg, rgba(26, 188, 156, 1) 0%, rgba(142, 68, 173, 1) 100%);
@@ -19,6 +21,8 @@ p {
     font-size: 12px;
     font-weight: light;
     color: #333;
+    color: black;
+
 }
 span a {
     font-size: 18px;
@@ -46,7 +50,7 @@ span a:hover {
 }
 .container {
     width: 100%;
-    height: 100%;
+    height: 150%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -70,7 +74,7 @@ span a:hover {
 .content {
     width: 100%;
     max-width: 600px;
-    padding: 20px 40px;
+    padding: 29px 49px;
     box-sizing: border-box;
     text-align: center;
 }

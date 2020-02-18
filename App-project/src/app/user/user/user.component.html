@@ -1,19 +1,22 @@
 <p></p>
-<form [formGroup]='userForm'>
-<div class="container">
-	<div class="avatar">
-		<a>
-			<img src="../../../assets/img/female.png" />
-		</a>
-	</div>
-	<div class="content">
+<div class="col-md-12"></div>
+<div class="col-md-12">
+<p></p>
+<form [formGroup]="userForm">
+  <p></p>
+  <div class="container">
+    <p></p>
+    <div class="avatar">
+      <a>
+        <img src="../../../assets/img/female.png" />
+      </a>
+    </div>
+    <app-profile></app-profile>
+    <div class="content">
       <a class="nav-link" (click)="onLogout()">
         <button class="btn btn-secondary btn-lg">Log out</button>
-	  </a>
-	  <p>{{currentUser.firstName}}</p>
-
-    
-	</div>
-</div>
+      </a>
+    </div>
+  </div>
 </form>
-<app-footer></app-footer>
+</div>

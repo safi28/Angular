@@ -8,7 +8,7 @@ import { ArticleService } from './article.service';
 import { Article } from '../models/article';
 
 @Injectable()
-export class SingleMovieResolver implements Resolve<Article> {
+export class SingleArticleResolver implements Resolve<Article> {
   constructor(private articleService: ArticleService) {}
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     const id = route.params["id"];

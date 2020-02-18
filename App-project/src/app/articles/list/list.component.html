@@ -1,68 +1,28 @@
-<!-- 
-<div class="row">
-  <div class="col-lg-2" style="width: 30em;height: 80em;" *ngIf="articles">
-    <a
-      *ngFor="let article of articles"
-      (click)="selectArticleHandler(article)"
-      class="list-group-item clearfix"
-    >
-      <div class="card mb-3">
-        <img
-          [src]="article.imageUrl"
-          alt="Card image"
-          style="height: 200px; width: 100%; display: block;"
-        />
-        <p></p>
-        <div class="card-body">
-          <h5 class="card-title">{{ article.title }}</h5>
-          <p class="card-text">{{ article.description }}</p>
-        </div>
-      </div>
-
-      <div class="card-body">
-        <a href="#" class="card-link">Card link</a>
-        <a href="#" class="card-link">Another link</a>
-      </div>
-      <div class="card-footer text-muted">
-        <button class="btn btn-primary" [routerLink]="['/article', article.id]">
-          View details
-        </button>
-      </div>
-    </a>
-  </div>
-</div>
- -->
-
 <mat-card class="example-card" *ngIf="articles">
-  <a
-    *ngFor="let article of articles"
-    (click)="selectArticleHandler(article)"
-    class="list-group-item clearfix"
-  >
+  <a *ngFor="let article of articles" class="list-group-item clearfix">
     <mat-card-header>
       <div mat-card-avatar class="example-header-image"></div>
-      <mat-card-title>{{article.title}}</mat-card-title>
+      <mat-card-title>{{ article.title }}</mat-card-title>
       <mat-card-subtitle>Dog Breed</mat-card-subtitle>
     </mat-card-header>
     <p></p>
-    <img
-      mat-card-image
-      [src]="article.imageUrl"
-      alt="Photo of a Shiba Inu"
-    />
+    <img mat-card-image [src]="article.imageUrl" alt="Photo of a Shiba Inu" />
     <mat-card-content>
       <p>
-        {{article.description}}
+        {{ article.description }}
       </p>
     </mat-card-content>
-    
+
     <mat-card-actions>
-      <button class="btn btn-primary" [routerLink]="['/article', article.id]">
+      <button
+        class="btn btn-primary"
+        (click)="selectArticleHandler(article)"
+        [routerLink]="['/article', article.id]"
+      >
         View details
       </button>
       <button mat-button>LIKE</button>
       <button mat-button>SHARE</button>
     </mat-card-actions>
-    
   </a>
 </mat-card>

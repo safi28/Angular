@@ -11,6 +11,7 @@ import { LandscapesComponent } from "./travel/landscapes/landscapes.component";
 import { RelaxComponent } from "./travel/relax/relax.component";
 import { AdventureComponent } from "./travel/adventure/adventure.component";
 import { AppMaterialModule } from "../app-material/app-material.module";
+import { FooterComponent } from '../core/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { AppMaterialModule } from "../app-material/app-material.module";
     CommonModule,
     ArticlesRoutingModule,
     ReactiveFormsModule,
-    AppMaterialModule
+    AppMaterialModule,
+    
   ],
   exports: [ListComponent, DetailComponent]
 })

@@ -4,15 +4,12 @@ import { Router } from "@angular/router";
 import { ToastrService } from "ngx-toastr";
 import { AuthService } from "../../auth/auth.service";
 import { AngularFirestore } from "@angular/fire/firestore";
-import { UserService } from '../../user/user.service'
+import { UserService } from "../../user/user.service";
 
 @Component({
   selector: "app-register",
   templateUrl: "./register.component.html",
-  styleUrls: [
-    "./register.component.css",
-    "../../../errors-message.css",
-  ]
+  styleUrls: ["./register.component.css", "../../../errors-message.css"]
 })
 export class RegisterComponent implements OnInit {
   personGender: string;
@@ -65,10 +62,6 @@ export class RegisterComponent implements OnInit {
   }
 
   get userData() {
-    // console.log(this.authService.userData);
-    console.log(this.registerForm.value);
-    
-
     return this.authService.userData;
   }
 }
