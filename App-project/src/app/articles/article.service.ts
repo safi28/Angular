@@ -1,12 +1,8 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Article } from "../models/article";
-import { tap } from "rxjs/operators";
-import { AngularFireDatabase, AngularFireList } from "@angular/fire/database";
-import { AngularFirestore } from "@angular/fire/firestore";
-import { Observable } from "rxjs";
-
-const BASE_URL = "bfa98e492177c8cb6c5e3c472e4444e5abd1063b";
+import { tap, map } from "rxjs/operators";
+import { AngularFireDatabase } from "@angular/fire/database";
 
 @Injectable({
   providedIn: "root"
@@ -15,24 +11,35 @@ export class ArticleService {
   articles: Article[];
   idKey: any;
   readonly selectedArticle: Article;
+  public keys: any;
 
   constructor(private http: HttpClient, private db: AngularFireDatabase) {}
 
   loadArticle() {
-    return this.db.list(`/travel`).valueChanges();
+    return this.db.list("/travel").valueChanges();
   }
 
-  loadIdArticle(id?: number) {
-    return this.db.list(`/travel${this.idKey}` ? `/${this.idKey}` : "").snapshotChanges();
-  }
-
-  createArticle(article: Article) {
+  loadIdArticle() {
     return this.db
       .list(`/travel`)
-      .push(article)
-      .then(snap => {
-        this.idKey = snap.key;
-      });
+      .snapshotChanges()
+      .pipe(
+        map(changes =>
+          changes.map(x => ({ key: x.payload.key, ...x.payload.child }))
+        ),
+        tap(next => {
+          this.keys = next;
+        })
+      );
+  }
+
+  getIdArticle(id: string) {
+    return this.http.get<Article>(
+      "https://app-project-82053.firebaseio.com/" + `travel/${id}`
+    );
+  }
+  createArticle(article: Article) {
+    return this.db.list(`/travel`).push(article);
   }
 
   selectArticle(article: Article) {

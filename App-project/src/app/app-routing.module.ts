@@ -5,6 +5,7 @@ import { RegisterComponent } from "./authentication/register/register.component"
 import { AuthGuard } from "./auth/auth.guard";
 import { HomeComponent } from "./core/unLoggedHome/home.component";
 import { LoggedHomeComponent } from "././core/home/home.component";
+import { NotFoundComponent } from "./core/not-found/not-found.component";
 
 const routes: Routes = [
   { path: "", pathMatch: "full", component: HomeComponent },
@@ -25,7 +26,8 @@ const routes: Routes = [
       isLogged: false
     }
   },
-  { path: "**", redirectTo: "" }
+  // { path: "**", redirectTo: "" },
+  { path: "**", component: NotFoundComponent }
 ];
 
 @NgModule({

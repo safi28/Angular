@@ -1,3 +1,13 @@
-.img-responsive {
+/* .img-responsive {
    border-radius: 2%;
-}
+} */
+
+.example-card {
+   max-width: 400px;
+ }
+ 
+ .example-header-image {
+   background-image: url('../../../assets/img/female.png');
+   background-size: cover;
+ }
+ 

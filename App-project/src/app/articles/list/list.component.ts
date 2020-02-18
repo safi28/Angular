@@ -34,10 +34,6 @@ export class ListComponent implements OnInit {
   }
 
   selectArticleHandler(article: Article) {
-    console.log(this.key);
-
     this.articleApi.selectArticle(article);
   }
-
-  
 }

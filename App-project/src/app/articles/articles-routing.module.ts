@@ -7,12 +7,17 @@ import { ListComponent } from "./list/list.component";
 
 const routes: Routes = [
   {
-    path: "article",
+    path: "",
     children: [
+      {
+        path: "list",
+        pathMatch: "full",
+        component: ListComponent
+      },
       // {
-      //   path: "article",
-      //   pathMatch: "full",
-      //   redirectTo: "'/article/create'"
+      //   path: '',
+      //   pathMatch: 'full',
+      //   redirectTo: '/article/create',
       // },
       {
         path: "create",
@@ -23,7 +28,7 @@ const routes: Routes = [
         }
       },
       {
-        path: "detail/:id",
+        path: "article/:id",
         component: DetailComponent,
         canActivate: [AuthGuard],
         data: {
@@ -32,8 +37,7 @@ const routes: Routes = [
         }
       }
     ]
-  },
-  { path: "list", component: ListComponent }
+  }
 ];
 @NgModule({
   imports: [RouterModule.forChild(routes)],

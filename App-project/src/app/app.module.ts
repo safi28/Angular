@@ -29,6 +29,7 @@ import { UserModule } from "./user/user.module";
 import { ArticlesModule } from "./articles/articles.module";
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
+import { NotFoundComponent } from './core/not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { AngularFireDatabaseModule } from '@angular/fire/database';
     HeaderComponent,
     LoginComponent,
     RegisterComponent,
+    NotFoundComponent,
   ],
   imports: [
     BrowserModule,
