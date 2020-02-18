@@ -1,10 +1,10 @@
-import { Component, OnInit } from "@angular/core";
-import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { Component, OnInit, ViewChild } from "@angular/core";
+import { FormGroup, Validators, FormControl } from "@angular/forms";
 import { Router } from "@angular/router";
 import { ToastrService } from "ngx-toastr";
 import { AuthService } from "../../auth/auth.service";
-import { AngularFirestore } from "@angular/fire/firestore";
-import { UserService } from "../../user/user.service";
+import * as firebase from "firebase";
+import { UserService } from '../user.service';
 
 @Component({
   selector: "app-register",
@@ -15,28 +15,38 @@ export class RegisterComponent implements OnInit {
   personGender: string;
   user: any;
   registerForm: FormGroup;
+  registerF: FormGroup;
+  // username: string;
 
   constructor(
-    private fb: FormBuilder,
     private router: Router,
     private toastr: ToastrService,
     private authService: AuthService,
-    private afs: AngularFirestore,
-    private userInfo: UserService
+    private username: UserService
   ) {}
   loading = false;
   submitted = false;
 
   ngOnInit() {
-    this.registerForm = this.fb.group({
-      displayName: ["", Validators.required],
-      lastName: ["", Validators.required],
-      phone: ["", Validators.required],
-      email: ["", [Validators.required]],
-      password: ["", [Validators.required, Validators.minLength(6)]],
-      male: [Boolean, Validators.required],
-      female: [Boolean, Validators.required]
-    });
+    this.registerF = new FormGroup(
+      {
+        displayName: new FormControl("", Validators.required),
+        lastName: new FormControl("", Validators.required),
+        email: new FormControl("", Validators.required),
+        password: new FormControl("", [
+          Validators.required,
+          Validators.minLength(6)
+        ]),
+        passwordConfirm: new FormControl("", Validators.minLength(6))
+      },
+      this.passwordMatchValidator
+    );
+  }
+
+  passwordMatchValidator(g: FormGroup) {
+    return g.get("password").value === g.get("passwordConfirm").value
+      ? null
+      : { mismatch: true };
   }
 
   setGender(person) {
@@ -52,6 +62,18 @@ export class RegisterComponent implements OnInit {
   tryRegister(value) {
     this.authService.doRegister(value).then(
       res => {
+        this.username = this.registerF.value.displayName;
+
+        var user = firebase.auth().currentUser;
+
+        user
+          .updateProfile({
+            displayName: this.username.userInfo()
+          })
+          .catch(function(error) {});
+        console.log(res);
+        console.log(this.username);
+
         this.toastr.success("Successfylly registered!", "Success");
         this.router.navigate(["/login"]);
       },

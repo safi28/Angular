@@ -20,8 +20,8 @@ export class UserComponent implements OnInit {
     private userService: UserService,
     private authService: AuthService,
     private fb: FormBuilder
-  ) {
-  }
+  ) {}
+
 
   ngOnInit() {
     this.userForm = this.fb.group({
@@ -31,7 +31,6 @@ export class UserComponent implements OnInit {
   }
 
   get currentUser() {
-
     return this.userService.currentUser;
   }
 

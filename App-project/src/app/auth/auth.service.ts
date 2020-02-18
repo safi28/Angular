@@ -2,13 +2,15 @@ import { Injectable } from "@angular/core";
 import { BehaviorSubject, Observable } from "rxjs";
 import { User } from "../models/user";
 import { AngularFireAuth } from "@angular/fire/auth";
-import * as firebase from "firebase/app";
 import { Router } from "@angular/router";
 import { ToastrService } from "ngx-toastr";
+import * as firebase from 'firebase';
+import { first } from 'rxjs/operators';
 
 @Injectable({
   providedIn: "root"
 })
+
 export class AuthService {
   userData: any;
   private currentUserSubject: BehaviorSubject<User>;
@@ -50,19 +52,6 @@ export class AuthService {
         .signInWithEmailAndPassword(value.email, value.password)
         .then(
           res => {
-            // this.afAuth.authState.subscribe(user => {
-            //   if (user) {
-            //     this.userData = user;
-            //     console.log(user);
-
-            //     localStorage.setItem("user", JSON.stringify(user));
-            //     JSON.parse(localStorage.getItem("user"));
-            //     return user;
-            //   } else {
-            //     localStorage.setItem("user", null);
-            //     JSON.parse(localStorage.getItem("user"));
-            //   }
-            // });
             resolve(res);
           },
           err => reject(err)
@@ -74,7 +63,7 @@ export class AuthService {
     return this.afAuth.auth.signOut().then(
       () => {
         this.toastr.success("Log out successfully!");
-        this.router.navigate(["/"]);
+        this.router.navigate(["/home"]);
       },
       err => {
         this.toastr.error(err.error, "Error");
@@ -82,6 +71,18 @@ export class AuthService {
     );
   }
 
+  isLoggedIn() {
+    return this.afAuth.authState.pipe(first()).toPromise();
+ }
+
+ async loggedUser() {
+  const user = await this.isLoggedIn()
+  if (user) {
+    return true;
+  } else {
+    return false
+ }
+}
   get iSLoggedIn(): boolean {
     const user = JSON.parse(localStorage.getItem("user"));
 

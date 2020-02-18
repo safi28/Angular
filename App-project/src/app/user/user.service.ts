@@ -1,5 +1,6 @@
 import { Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
+import * as firebase from "firebase";
+import { RegisterComponent } from "../authentication/register/register.component";
 
 @Injectable({
   providedIn: "root"
@@ -8,7 +9,7 @@ export class UserService {
   currentUser: { email: string; password: string } = null;
   name: string;
 
-  constructor(private http: HttpClient) {
+  constructor() {
     const currentUser = localStorage.getItem("user");
     this.currentUser = currentUser ? JSON.parse(currentUser) : null;
   }
@@ -21,5 +22,4 @@ export class UserService {
     this.currentUser = null;
     localStorage.removeItem("user");
   }
-
 }

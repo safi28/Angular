@@ -12,6 +12,8 @@ import { RelaxComponent } from "./travel/relax/relax.component";
 import { AdventureComponent } from "./travel/adventure/adventure.component";
 import { AppMaterialModule } from "../app-material/app-material.module";
 import { FooterComponent } from '../core/footer/footer.component';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { ArticleComponent } from './article/article.component';
 
 @NgModule({
   declarations: [
@@ -21,13 +23,15 @@ import { FooterComponent } from '../core/footer/footer.component';
     TravelComponent,
     LandscapesComponent,
     RelaxComponent,
-    AdventureComponent
+    AdventureComponent,
+    ArticleComponent
   ],
   imports: [
     CommonModule,
     ArticlesRoutingModule,
     ReactiveFormsModule,
     AppMaterialModule,
+    MatGridListModule
     
   ],
   exports: [ListComponent, DetailComponent]

@@ -30,6 +30,7 @@ import { ArticlesModule } from "./articles/articles.module";
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { NotFoundComponent } from './core/not-found/not-found.component';
+import { MatGridListModule } from '@angular/material/grid-list';
 
 @NgModule({
   declarations: [
@@ -48,6 +49,8 @@ import { NotFoundComponent } from './core/not-found/not-found.component';
     ReactiveFormsModule,
     BrowserAnimationsModule,
     AppMaterialModule,
+    MatGridListModule,
+
     HttpClientModule,
     ToastrModule.forRoot(),
     AngularFireModule.initializeApp(environment.firebase),

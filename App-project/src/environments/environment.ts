@@ -10,12 +10,13 @@ import 'firebase/firestore';
 export const environment = {
   production: false,
   firebase: {
-    apiKey: "AIzaSyBVXdXipGjEd-NINucUo00Ghn8kPcuhPpo",
-    authDomain: "app-project-82053.firebaseapp.com",
-    databaseURL: "https://app-project-82053.firebaseio.com",
-    projectId: "app-project-82053",
-    storageBucket: "app-project-82053.appspot.com",
-    messagingSenderId: "1025702612942",
+    apiKey: "AIzaSyBZiRWrT5BRZpkkOta1263f0hnw04jL_us",
+    authDomain: "travellers-fdc03.firebaseapp.com",
+    databaseURL: "https://travellers-fdc03.firebaseio.com",
+    projectId: "travellers-fdc03",
+    storageBucket: "travellers-fdc03.appspot.com",
+    messagingSenderId: "1008498601204",
+    appId: "1:1008498601204:web:f829cf998b523acad302a1"
   }
 };
 

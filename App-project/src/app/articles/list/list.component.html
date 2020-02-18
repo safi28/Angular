@@ -1,28 +1,5 @@
-<mat-card class="example-card" *ngIf="articles">
-  <a *ngFor="let article of articles" class="list-group-item clearfix">
-    <mat-card-header>
-      <div mat-card-avatar class="example-header-image"></div>
-      <mat-card-title>{{ article.title }}</mat-card-title>
-      <mat-card-subtitle>Dog Breed</mat-card-subtitle>
-    </mat-card-header>
-    <p></p>
-    <img mat-card-image [src]="article.imageUrl" alt="Photo of a Shiba Inu" />
-    <mat-card-content>
-      <p>
-        {{ article.description }}
-      </p>
-    </mat-card-content>
-
-    <mat-card-actions>
-      <button
-        class="btn btn-primary"
-        (click)="selectArticleHandler(article)"
-        [routerLink]="['/article', article.id]"
-      >
-        View details
-      </button>
-      <button mat-button>LIKE</button>
-      <button mat-button>SHARE</button>
-    </mat-card-actions>
-  </a>
-</mat-card>
+<div class="row" *ngIf="isCreator">
+  <div class="col-lg-2" *ngFor="let article of articles">
+    <app-article [article]="article"></app-article>
+  </div>
+</div>

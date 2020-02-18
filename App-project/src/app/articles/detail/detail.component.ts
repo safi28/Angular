@@ -5,6 +5,7 @@ import { ActivatedRoute } from "@angular/router";
 import { map } from "rxjs/operators";
 import { AngularFireDatabase, AngularFireList } from "@angular/fire/database";
 import { Observable } from "rxjs";
+import { AngularFirestore } from "@angular/fire/firestore";
 
 @Component({
   selector: "app-detail",
@@ -16,6 +17,9 @@ export class DetailComponent implements OnInit {
   item: Observable<Article[]>;
   article: Article;
 
+  id: string;
+  article$: Observable<Article>;
+
   isRouteComponent = false;
 
   get selectedArticle() {
@@ -25,17 +29,12 @@ export class DetailComponent implements OnInit {
   constructor(
     private activatedRoute: ActivatedRoute,
     private articlesService: ArticleService,
-    private af: AngularFireDatabase
+    private db: AngularFirestore
   ) {
-    // this.isRouteComponent = this.activatedRoute.snapshot.data.shouldFetchCause;
+    this.activatedRoute.params.subscribe(params => (this.id = params.id));
   }
 
   ngOnInit() {
-    // if (this.isRouteComponent) {
-    //   this.articlesService.loadIdArticle().subscribe(el => {
-    //     // this.item = el.keys
-    //   });
-    // }
-    this.article = this.activatedRoute.snapshot.data["singleArticle"];
+    this.article$ = this.db.doc<Article>("travel/" + this.id).valueChanges();
   }
 }

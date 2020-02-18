@@ -21,7 +21,7 @@ export class CreateComponent implements OnInit {
 
   ngOnInit() {
     this.form = this.fb.group({
-      article: ["", [Validators.required]],
+      title: ["", [Validators.required]],
       description: ["", Validators.required],
       imageUrl: ["", Validators.required]
     });

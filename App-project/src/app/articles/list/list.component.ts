@@ -1,13 +1,10 @@
-import {
-  Component,
-  OnInit,
-  ViewChild,
-  Output,
-  EventEmitter
-} from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { Article } from "src/app/models/article";
 import { MatPaginator, MatTableDataSource } from "@angular/material";
 import { ArticleService } from "../article.service";
+import { Observable } from "rxjs";
+import { AngularFirestore } from "@angular/fire/firestore";
+import { AuthService } from 'src/app/auth/auth.service';
 
 @Component({
   selector: "app-list",
@@ -20,12 +17,13 @@ export class ListComponent implements OnInit {
   public key: string;
 
   get article() {
-    return this.articleApi.articles;
+    return this.articleApi.articles$;
   }
 
-  @Output() selectArticle: EventEmitter<Article> = new EventEmitter();
-
-  constructor(private articleApi: ArticleService) {}
+  constructor(
+    private articleApi: ArticleService,
+    private articleService: ArticleService,
+    private user: AuthService  ) {}
 
   ngOnInit() {
     this.articleApi.loadArticle().subscribe(data => {
@@ -33,9 +31,12 @@ export class ListComponent implements OnInit {
     });
   }
 
-  selectArticleHandler(id) {
-    // this.articleApi.selectArticle(article);
-    return this.articleApi.getIdArticle(id);
+  isCreator() {
+    return !!this.user.loggedUser
+  }
 
+  selectCauseHandler(cause: Article) {
+    // this.selectCause.emit(cause);
+    this.articleService.selectCause(cause);
   }
 }

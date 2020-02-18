@@ -3,46 +3,40 @@ import { HttpClient } from "@angular/common/http";
 import { Article } from "../models/article";
 import { tap, map } from "rxjs/operators";
 import { AngularFireDatabase } from "@angular/fire/database";
+import { AngularFirestore } from "@angular/fire/firestore";
+import { Observable } from "rxjs";
 
 @Injectable({
   providedIn: "root"
 })
 export class ArticleService {
   articles: Article[];
-  idKey: any;
-  readonly selectedArticle: Article;
-  public keys: any;
 
-  constructor(private http: HttpClient, private db: AngularFireDatabase) {}
+  readonly selectedArticle: Article;
+  articles$: Observable<Article[]>;
+
+  constructor(private af: AngularFirestore) {}
 
   loadArticle() {
-    return this.db.list("/travel").valueChanges();
-  }
-
-  loadIdArticle() {
-    return this.db
-      .list(`/travel`)
+    return this.af
+      .collection<Article>("/travel")
       .snapshotChanges()
       .pipe(
-        map(changes =>
-          changes.map(x => ({ key: x.payload.key, ...x.payload.child }))
-        ),
-        tap(next => {
-          this.keys = next;
-        })
+        map(actions =>
+          actions.map(a => {
+            const data = a.payload.doc.data() as Article;
+            const id = a.payload.doc.id;
+            return { id, ...data };
+          })
+        )
       );
   }
 
-  getIdArticle(id: string) {
-    return this.http.get<Article>(
-      "https://app-project-82053.firebaseio.com/" + `travel/${id}`
-    );
-  }
   createArticle(article: Article) {
-    return this.db.list(`/travel`).push(article);
+    return this.af.collection("/travel").add(article);
   }
 
-  selectArticle(article: Article) {
-    (this as any).selectedArticle = article;
+  selectCause(cause: Article) {
+    (this as any).selectedArticle = cause;
   }
 }

@@ -1,4 +1,4 @@
-<div *ngIf="selectedArticle">
+<!-- <div *ngIf="article$ | async as article">
   <div class="row">
     <div class="col-xs-12">
       <h1 class="text-center">{{ selectedArticle.title }}</h1>
@@ -21,4 +21,13 @@
   </div>
 
   <hr />
+</div> -->
+<div class="jumbotron">
+<mat-card class="example-card" >
+  <div *ngIf="article$ | async as article">
+  <h1>{{ article.title }}</h1>
+  <img mat-card-image [src]="article.imageUrl">
+  <p>{{ article.description }}</p>
+ </div>
+</mat-card>
 </div>

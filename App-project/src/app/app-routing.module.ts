@@ -8,7 +8,10 @@ import { LoggedHomeComponent } from "././core/home/home.component";
 import { NotFoundComponent } from "./core/not-found/not-found.component";
 
 const routes: Routes = [
-  { path: "", component: HomeComponent },
+  {
+    path: "home",
+    component: HomeComponent,
+  },
   {
     path: "dashboard",
     component: LoggedHomeComponent,
@@ -30,9 +33,9 @@ const routes: Routes = [
     data: {
       isLogged: false
     }
-  },
-  // { path: "**", redirectTo: "" },
-  { path: "**", component: NotFoundComponent }
+  }
+  // { path: "**/**", redirectTo: "" },
+  // { path: "**", component: NotFoundComponent }
 ];
 
 @NgModule({

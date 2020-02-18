@@ -7,7 +7,7 @@ import { ListComponent } from "./list/list.component";
 
 const routes: Routes = [
   {
-    path: "article",
+    path: "",
     children: [
       {
         path: "list",
@@ -28,7 +28,7 @@ const routes: Routes = [
         }
       },
       {
-        path: "article/:id",
+        path: "list/:id",
         component: DetailComponent,
         canActivate: [AuthGuard],
         data: {
@@ -37,7 +37,8 @@ const routes: Routes = [
         }
       }
     ]
-  }
+  },
+
 ];
 @NgModule({
   imports: [RouterModule.forChild(routes)],

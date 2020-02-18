@@ -1,7 +1,9 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, Input } from "@angular/core";
 import { Router } from "@angular/router";
-import { UserService } from "../user.service";
 import { FormGroup } from "@angular/forms";
+import { RegisterComponent } from "src/app/authentication/register/register.component";
+import { User } from "src/app/models/user";
+import { UserService } from 'src/app/authentication/user.service';
 
 @Component({
   selector: "app-profile",
@@ -9,14 +11,16 @@ import { FormGroup } from "@angular/forms";
   styleUrls: ["./profile.component.css"]
 })
 export class ProfileComponent implements OnInit {
+  username: string
   profile: FormGroup;
-  currentUser = this.userService.currentUser.email;
+
   constructor(private router: Router, private userService: UserService) {}
 
-  ngOnInit() {}
-
-  logout() {
-    this.userService.logout();
-    this.router.navigate([""]);
+  ngOnInit() {
+    this.username = this.userService.userInfo()
+    console.log(this.username);
+    
   }
+
+
 }

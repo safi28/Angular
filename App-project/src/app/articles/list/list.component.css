@@ -2,6 +2,10 @@
    border-radius: 2%;
 } */
 
+
+.col-md-4 {
+   background-image: url('../../../assets/img/earth.jpg');
+}
 .example-card {
    max-width: 400px;
  }

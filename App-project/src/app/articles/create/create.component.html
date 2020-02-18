@@ -8,18 +8,18 @@
       <label for="article">Article</label>
       <input
         type="text"
-        formControlName="article"
-        id="article"
+        formControlName="title"
+        id="title"
         class="form-control"
         placeholder="My article is ..."
         minlength="10"
       />
-      <p
+      <!-- <p
         class="error-message"
-        *ngIf="form.get('article').invalid && form.get('article').touched"
+        *ngIf="form.get('title').invalid && form.get('title').touched"
       >
         Enter cause name
-      </p>
+      </p> -->
     </div>
 
     <div class="form-group">

@@ -1,9 +1,9 @@
 import { Component, OnInit } from "@angular/core";
 import { AuthService } from "src/app/auth/auth.service";
 import { UserService } from "src/app/user/user.service";
-import { AngularFireAuth } from '@angular/fire/auth';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { AngularFireAuth } from "@angular/fire/auth";
+import { FormGroup, FormBuilder, Validators } from "@angular/forms";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "app-home",
