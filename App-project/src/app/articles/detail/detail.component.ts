@@ -6,6 +6,7 @@ import { map } from "rxjs/operators";
 import { AngularFireDatabase, AngularFireList } from "@angular/fire/database";
 import { Observable } from "rxjs";
 import { AngularFirestore } from "@angular/fire/firestore";
+import { CreateComponent } from "../create/create.component";
 
 @Component({
   selector: "app-detail",
@@ -14,11 +15,15 @@ import { AngularFirestore } from "@angular/fire/firestore";
 })
 export class DetailComponent implements OnInit {
   @Input() selectArticles2: Article;
+  @ViewChild(CreateComponent, { static: false }) detailKey;
+
+  key: string;
   item: Observable<Article[]>;
   article: Article;
 
   id: string;
   article$: Observable<Article>;
+  articleFood: Observable<Article>;
 
   isRouteComponent = false;
 
@@ -36,5 +41,18 @@ export class DetailComponent implements OnInit {
 
   ngOnInit() {
     this.article$ = this.db.doc<Article>("travel/" + this.id).valueChanges();
+    this.articleFood = this.db.doc<Article>("food/" + this.id).valueChanges();
+
+    // if (this.detail.details === "food") {
+    //   this.articleFood = this.db.doc<Article>("food/" + this.id).valueChanges();
+    // } else if (this.detail.details === "travel") {
+    //   this.article$ = this.db.doc<Article>("travel/" + this.id).valueChanges();
+    // }
   }
+
+  // ngAfterViewInit() {
+  //   this.key = this.detailKey.key;
+
+  //   console.log(this.key);
+  // }
 }

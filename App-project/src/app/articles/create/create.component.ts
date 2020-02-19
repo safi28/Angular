@@ -1,8 +1,10 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { ArticleService } from "../article.service";
-import { Article } from "src/app/models/article";
-import { Router } from '@angular/router';
+import { Router } from "@angular/router";
+import { Article } from "../articleIn";
+import { MatOption, MatSelectChange } from "@angular/material";
+import { AngularFirestore } from "@angular/fire/firestore";
 
 @Component({
   selector: "app-create",
@@ -10,11 +12,23 @@ import { Router } from '@angular/router';
   styleUrls: ["./create.component.css"]
 })
 export class CreateComponent implements OnInit {
+  @Input("detailKey") details: string;
+
   form: FormGroup;
-  
+  optionText: string;
+  key: string;
+
+  private value = new EventEmitter<string>();
+  currentValue = this.value.asObservable();
+
+  foods: Article[] = [
+    { value: "travel", viewValue: "Travel" },
+    { value: "food", viewValue: "Food" }
+  ];
 
   constructor(
     private fb: FormBuilder,
+    private af: AngularFirestore,
     private articleService: ArticleService,
     private router: Router
   ) {}
@@ -27,11 +41,19 @@ export class CreateComponent implements OnInit {
     });
   }
 
+  change(ev: MatSelectChange) {
+    this.optionText = (ev.source.selected as MatOption).viewValue; // get the key of Option
+    this.key = this.optionText.toLowerCase();
+    this.details = this.key;
+  }
+
   createArticleHandler(article) {
-    console.log(article);
-    
-    this.articleService.createArticle(article);
-    this.router.navigate(['list'])
-    
+    if (this.key == "food") {
+      this.articleService.createArticleFood(article);
+      this.router.navigate(["/food"]);
+    } else {
+      this.articleService.createArticlTravel(article);
+      this.router.navigate(["list"]);
+    }
   }
 }

@@ -8,7 +8,6 @@ import { Article } from 'src/app/models/article';
   styleUrls: ['./article.component.css']
 })
 export class ArticleComponent implements OnInit {
-  // articles: any;
   @Input('article') article: Article
 
   constructor(

@@ -4,7 +4,7 @@ import { User } from "../models/user";
 import { AngularFireAuth } from "@angular/fire/auth";
 import { Router } from "@angular/router";
 import { ToastrService } from "ngx-toastr";
-import * as firebase from 'firebase';
+import * as firebase from 'firebase/app';
 import { first } from 'rxjs/operators';
 
 @Injectable({

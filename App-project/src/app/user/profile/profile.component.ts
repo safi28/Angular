@@ -17,9 +17,7 @@ export class ProfileComponent implements OnInit {
   constructor(private router: Router, private userService: UserService) {}
 
   ngOnInit() {
-    this.username = this.userService.userInfo()
-    console.log(this.username);
-    
+    this.username = this.userService.userInfo()    
   }
 
 

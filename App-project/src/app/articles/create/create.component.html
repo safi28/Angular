@@ -21,7 +21,14 @@
         Enter cause name
       </p> -->
     </div>
-
+    <mat-form-field>
+      <mat-label>Select type</mat-label>
+      <mat-select (selectionChange)="change($event)">
+        <mat-option *ngFor="let food of foods" [value]="food.value">
+          {{food.viewValue}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
     <div class="form-group">
       <label for="description">Description</label>
       <textarea

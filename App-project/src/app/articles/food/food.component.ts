@@ -1,14 +1,13 @@
-import { Component, OnInit } from '@angular/core';
-import { ArticleService } from '../../article.service';
+import { Component, OnInit } from "@angular/core";
+import { ArticleService } from "../article.service";
 import { Article } from 'src/app/models/article';
 
-
 @Component({
-  selector: 'app-adventure',
-  templateUrl: './adventure.component.html',
-  styleUrls: ['./adventure.component.css']
+  selector: "app-food",
+  templateUrl: "./food.component.html",
+  styleUrls: ["./food.component.css"]
 })
-export class AdventureComponent implements OnInit {
+export class FoodComponent implements OnInit {
   articles: any;
 
   constructor(private articleApi: ArticleService) {}
@@ -26,5 +25,4 @@ export class AdventureComponent implements OnInit {
   selectCauseHandler(cause: Article) {
     this.articleApi.selectCause(cause);
   }
-
 }

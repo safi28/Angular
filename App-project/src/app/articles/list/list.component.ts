@@ -36,7 +36,6 @@ export class ListComponent implements OnInit {
   }
 
   selectCauseHandler(cause: Article) {
-    // this.selectCause.emit(cause);
     this.articleService.selectCause(cause);
   }
 }

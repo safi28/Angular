@@ -4,6 +4,13 @@ import { CreateComponent } from "./create/create.component";
 import { AuthGuard } from "../auth/auth.guard";
 import { DetailComponent } from "./detail/detail.component";
 import { ListComponent } from "./list/list.component";
+import { FoodComponent } from "./food/food.component";
+import { AdventureComponent } from './travel/adventure/adventure.component';
+import { RelaxComponent } from './travel/relax/relax.component';
+import { LandscapesComponent } from './travel/landscapes/landscapes.component';
+import { FastFoodComponent } from './food/fast-food/fast-food.component';
+import { HomeMadeComponent } from './food/home-made/home-made.component';
+import { RestaurantsComponent } from './food/restaurants/restaurants.component';
 
 const routes: Routes = [
   {
@@ -19,6 +26,7 @@ const routes: Routes = [
       //   pathMatch: 'full',
       //   redirectTo: '/article/create',
       // },
+      { path: "food", component: FoodComponent },
       {
         path: "create",
         component: CreateComponent,
@@ -27,6 +35,7 @@ const routes: Routes = [
           isLogged: true
         }
       },
+      
       {
         path: "list/:id",
         component: DetailComponent,
@@ -36,6 +45,23 @@ const routes: Routes = [
           isLogged: true
         }
       }
+    ]
+  },
+  {
+    path: "",
+    children: [
+      { path: "adventure", component: AdventureComponent },
+      { path: "relax", component: RelaxComponent },
+      { path: "landscapes", component: LandscapesComponent }
+    ]
+  },
+
+  {
+    path: "",
+    children: [
+      { path: "fast", component: FastFoodComponent },
+      { path: "home-made", component: HomeMadeComponent },
+      { path: "restaurant", component: RestaurantsComponent }
     ]
   },
 

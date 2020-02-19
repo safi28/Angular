@@ -6,9 +6,10 @@ import { CoreRouting } from './core-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HomeComponent } from './unLoggedHome/home.component';
 import { HeaderComponent } from './header/header.component';
+import { GuideComponent } from './guide/guide.component';
 
 @NgModule({
-  declarations: [LoggedHomeComponent, FooterComponent,HomeComponent],
+  declarations: [LoggedHomeComponent, FooterComponent,HomeComponent, GuideComponent],
   imports: [
     CommonModule,
     CoreRouting,
