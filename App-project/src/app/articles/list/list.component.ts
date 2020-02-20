@@ -1,9 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { Article } from "src/app/models/article";
-import { MatPaginator, MatTableDataSource } from "@angular/material";
 import { ArticleService } from "../article.service";
-import { Observable } from "rxjs";
-import { AngularFirestore } from "@angular/fire/firestore";
 import { AuthService } from 'src/app/auth/auth.service';
 
 @Component({

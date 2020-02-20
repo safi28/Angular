@@ -34,7 +34,7 @@ import { FoodComponent } from './food/food.component';
     FoodComponent,
     FastFoodComponent,
     HomeMadeComponent,
-    RestaurantsComponent
+    RestaurantsComponent,
   ],
   imports: [
     CommonModule,

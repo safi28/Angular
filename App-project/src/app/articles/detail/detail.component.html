@@ -5,6 +5,11 @@
       <img mat-card-image [src]="article.imageUrl" />
       <p>{{ article.description }}</p>
     </div>
+    <p class="pull-right">Likes {{article.like}}</p>
+
+    <button mat-button (click)="deleteTravel()">Delete</button>
+    <button mat-button (click)='likeTravel()'>Like</button>
+
   </mat-card>
   <mat-card class="example-card" *ngIf="articleFood | async as article">
     <div>
@@ -12,5 +17,10 @@
       <img mat-card-image [src]="article.imageUrl" />
       <p>{{ article.description }}</p>
     </div>
+    <p class="pull-right">Likes {{article.like}}</p>
+
+    <button mat-button (click)="deleteFood()">Delete</button>
+    <button mat-button (click)='likeFood()'>Like</button>
+
   </mat-card>
 </div>

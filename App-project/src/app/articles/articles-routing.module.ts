@@ -5,12 +5,12 @@ import { AuthGuard } from "../auth/auth.guard";
 import { DetailComponent } from "./detail/detail.component";
 import { ListComponent } from "./list/list.component";
 import { FoodComponent } from "./food/food.component";
-import { AdventureComponent } from './travel/adventure/adventure.component';
-import { RelaxComponent } from './travel/relax/relax.component';
-import { LandscapesComponent } from './travel/landscapes/landscapes.component';
-import { FastFoodComponent } from './food/fast-food/fast-food.component';
-import { HomeMadeComponent } from './food/home-made/home-made.component';
-import { RestaurantsComponent } from './food/restaurants/restaurants.component';
+import { AdventureComponent } from "./travel/adventure/adventure.component";
+import { RelaxComponent } from "./travel/relax/relax.component";
+import { LandscapesComponent } from "./travel/landscapes/landscapes.component";
+import { FastFoodComponent } from "./food/fast-food/fast-food.component";
+import { HomeMadeComponent } from "./food/home-made/home-made.component";
+import { RestaurantsComponent } from "./food/restaurants/restaurants.component";
 
 const routes: Routes = [
   {
@@ -21,11 +21,6 @@ const routes: Routes = [
         pathMatch: "full",
         component: ListComponent
       },
-      // {
-      //   path: '',
-      //   pathMatch: 'full',
-      //   redirectTo: '/article/create',
-      // },
       { path: "food", component: FoodComponent },
       {
         path: "create",
@@ -35,7 +30,7 @@ const routes: Routes = [
           isLogged: true
         }
       },
-      
+
       {
         path: "list/:id",
         component: DetailComponent,
@@ -63,8 +58,7 @@ const routes: Routes = [
       { path: "home-made", component: HomeMadeComponent },
       { path: "restaurant", component: RestaurantsComponent }
     ]
-  },
-
+  }
 ];
 @NgModule({
   imports: [RouterModule.forChild(routes)],

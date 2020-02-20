@@ -1,12 +1,11 @@
 import { Component, OnInit, ViewChild, ElementRef, Input } from "@angular/core";
 import { ArticleService } from "../article.service";
 import { Article } from "src/app/models/article";
-import { ActivatedRoute } from "@angular/router";
-import { map } from "rxjs/operators";
-import { AngularFireDatabase, AngularFireList } from "@angular/fire/database";
+import { ActivatedRoute, Router } from "@angular/router";
 import { Observable } from "rxjs";
 import { AngularFirestore } from "@angular/fire/firestore";
 import { CreateComponent } from "../create/create.component";
+import { map } from "rxjs/operators";
 
 @Component({
   selector: "app-detail",
@@ -20,6 +19,7 @@ export class DetailComponent implements OnInit {
   key: string;
   item: Observable<Article[]>;
   article: Article;
+  likes: number = 0;
 
   id: string;
   article$: Observable<Article>;
@@ -34,7 +34,8 @@ export class DetailComponent implements OnInit {
   constructor(
     private activatedRoute: ActivatedRoute,
     private articlesService: ArticleService,
-    private db: AngularFirestore
+    private db: AngularFirestore,
+    private router: Router
   ) {
     this.activatedRoute.params.subscribe(params => (this.id = params.id));
   }
@@ -42,17 +43,31 @@ export class DetailComponent implements OnInit {
   ngOnInit() {
     this.article$ = this.db.doc<Article>("travel/" + this.id).valueChanges();
     this.articleFood = this.db.doc<Article>("food/" + this.id).valueChanges();
-
-    // if (this.detail.details === "food") {
-    //   this.articleFood = this.db.doc<Article>("food/" + this.id).valueChanges();
-    // } else if (this.detail.details === "travel") {
-    //   this.article$ = this.db.doc<Article>("travel/" + this.id).valueChanges();
-    // }
   }
 
-  // ngAfterViewInit() {
-  //   this.key = this.detailKey.key;
+  deleteFood() {
+    this.db.doc<Article>("food/" + this.id).delete();
+    this.router.navigate(["/food"]);
+  }
 
-  //   console.log(this.key);
-  // }
+  deleteTravel() {
+    this.db.doc<Article>("travel/" + this.id).delete();
+    this.router.navigate(["/list"]);
+  }
+
+  likeFood() {
+    this.likes++;
+    this.db
+      .doc<Article>("food/" + this.id)
+      .update({ like: this.likes })
+      .then();
+  }
+
+  likeTravel() {
+    this.likes++;
+    this.db
+      .doc<Article>("travel/" + this.id)
+      .update({ like: this.likes })
+      .then();
+  }
 }

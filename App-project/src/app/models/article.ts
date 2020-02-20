@@ -1,7 +1,6 @@
 export interface Article {
-  // article: string;
-  // key: string;
-  title: string;
+  title: 0;
   description: string;
   imageUrl: string;
+  like: number;
 }

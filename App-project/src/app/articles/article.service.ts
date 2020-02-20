@@ -1,18 +1,16 @@
-import { Injectable, ViewChild, EventEmitter, Input } from "@angular/core";
+import { Injectable, Input } from "@angular/core";
 import { Article } from "../models/article";
 import { tap, map } from "rxjs/operators";
 import { AngularFirestore } from "@angular/fire/firestore";
-import { Observable, BehaviorSubject } from "rxjs";
+import { Observable } from "rxjs";
 
 @Injectable({
   providedIn: "root"
 })
 export class ArticleService {
   articles: Article[];
-  @Input() value: string;
-
-  public optionText = new BehaviorSubject(this.value);
-  currentText = this.optionText.asObservable();
+  optionText: string;
+  id: string;
 
   readonly selectedArticle: Article;
   articles$: Observable<Article[]>;
@@ -22,7 +20,7 @@ export class ArticleService {
   createArticleFood(article: Article) {
     return this.af.collection(`/food`).add(article);
   }
-  
+
   createArticlTravel(article: Article) {
     return this.af.collection(`/travel`).add(article);
   }
@@ -36,6 +34,7 @@ export class ArticleService {
           actions.map(a => {
             const data = a.payload.doc.data() as Article;
             const id = a.payload.doc.id;
+            this.id = id;
             return { id, ...data };
           })
         )
@@ -51,15 +50,15 @@ export class ArticleService {
           actions.map(a => {
             const data = a.payload.doc.data() as Article;
             const id = a.payload.doc.id;
+            this.id = id;
+
             return { id, ...data };
           })
         )
       );
   }
 
-  saveData(message: string) {
-    this.optionText.next(message);
-  }
+
 
   loadArticle() {
     return this.af

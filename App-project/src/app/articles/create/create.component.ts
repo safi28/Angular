@@ -4,7 +4,6 @@ import { ArticleService } from "../article.service";
 import { Router } from "@angular/router";
 import { Article } from "../articleIn";
 import { MatOption, MatSelectChange } from "@angular/material";
-import { AngularFirestore } from "@angular/fire/firestore";
 
 @Component({
   selector: "app-create",
@@ -12,7 +11,7 @@ import { AngularFirestore } from "@angular/fire/firestore";
   styleUrls: ["./create.component.css"]
 })
 export class CreateComponent implements OnInit {
-  @Input("detailKey") details: string;
+  @Input("details") details: string;
 
   form: FormGroup;
   optionText: string;
@@ -28,7 +27,6 @@ export class CreateComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private af: AngularFirestore,
     private articleService: ArticleService,
     private router: Router
   ) {}
@@ -37,7 +35,8 @@ export class CreateComponent implements OnInit {
     this.form = this.fb.group({
       title: ["", [Validators.required]],
       description: ["", Validators.required],
-      imageUrl: ["", Validators.required]
+      imageUrl: ["", Validators.required],
+      like: [0,Validators.required]
     });
   }
 

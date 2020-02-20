@@ -14,10 +14,8 @@ export class HeaderComponent implements OnInit {
   isLoggedIn: FormGroup;
 
   constructor(
-    af: AngularFireAuth,
     private authService: AuthService,
     private fb: FormBuilder,
-    private router: Router
   ) {}
 
   ngOnInit() {
@@ -29,7 +27,6 @@ export class HeaderComponent implements OnInit {
 
   get isLogged() {
     if (this.authService.iSLoggedIn) {
-    // this.router.navigate(["/dashboard"]);
       return true;
     }
     return false;

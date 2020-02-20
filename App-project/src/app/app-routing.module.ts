@@ -34,9 +34,9 @@ const routes: Routes = [
     data: {
       isLogged: false
     }
-  }
+  },
   // { path: "**/**", redirectTo: "" },
-  // { path: "**", component: NotFoundComponent }
+  { path: "**", component: NotFoundComponent }
 ];
 
 @NgModule({

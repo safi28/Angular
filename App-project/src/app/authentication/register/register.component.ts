@@ -86,4 +86,5 @@ export class RegisterComponent implements OnInit {
   get userData() {
     return this.authService.userData;
   }
+  
 }
