@@ -15,7 +15,6 @@ import { GuideComponent } from './guide/guide.component';
     CoreRouting,
     FormsModule,
     ReactiveFormsModule,
-    CoreRouting
   ],
   exports: [FooterComponent]
 })

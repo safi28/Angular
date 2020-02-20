@@ -1,13 +1,10 @@
 import { Routes, RouterModule } from "@angular/router";
 import { NgModule } from "@angular/core";
-import { LoggedHomeComponent } from "./home/home.component";
 
-const routes: Routes = [
-    // { path: "dashboard", component: LoggedHomeComponent }
-];
+const routes: Routes = [];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, { useHash: true,  enableTracing: true})],
+  imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
 export class CoreRouting {}
