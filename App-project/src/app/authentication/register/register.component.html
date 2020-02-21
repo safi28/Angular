@@ -1,54 +1,55 @@
-<div class="jumbotron">
-  <div class="row">
-    <div class="col-lg-4"></div>
-    <div class="col-lg-4">
-  <h3>User Registration</h3>
-
+<p class="tip"></p>
+<div class="cont">
   <form [formGroup]="registerF">
-    <div class="form-group">
-      <label>First Name</label>
-      <input type="name" formControlName="displayName" class="form-control" required />
-      <label>Last Name</label>
-      <input
-        type="name"
-        formControlName="lastName"
-        class="form-control"
-        required
-      />
-      <label>Email address</label>
-      <input
-        type="email"
-        formControlName="email"
-        class="form-control"
-        required
-      />
-      
+    <div class="form sign-in">
+      <h2>Welcome,</h2>
+      <label>
+        <span>First Name</span>
+        <input type="name" formControlName="displayName" />
+      </label>
+      <label>
+        <span>Last Name</span>
+        <input type="lastName" formControlName="lastName" />
+      </label>
+      <label>
+        <span>Email address</span>
+        <input type="email" formControlName="email" />
+      </label>
+      <label>
+        <span>Password</span>
+        <input type="password" formControlName="password" />
+      </label>
+
+      <button
+        type="button"
+        (click)="tryRegister(registerF.value)"
+        class="submit"
+      >
+        Sign Up
+      </button>
+
+      <button type="button" class="submit" routerLink="/login">
+        Sign In
+      </button>
     </div>
-    <div class="form-group">
-      <label>Password</label>
-      <input
-        type="password"
-        class="form-control"
-        formControlName="password"
-        required
-      />
-      <div class="error"></div>
-      <label class="success">{{ successMessage }}</label>
+    <div class="sub-cont">
+      <div class="img">
+        <div class="img__text m--up">
+          <h2>New here?</h2>
+          <p>Sign up and discover great amount of new opportunities!</p>
+        </div>
+        <div class="img__text m--in">
+          <h2>One of us?</h2>
+          <p>If you already has an account, just sign in. We've missed you!</p>
+        </div>
+        <div class="img__btn">
+          <span class="m--up">
+            <button type="button" routerLink="/login" class="m--up">
+              Sign In
+            </button>
+          </span>
+        </div>
+      </div>
     </div>
-    <div class="form-group">
-  
-    </div>
-    <button
-      type="submit"
-      (click)="tryRegister(registerF.value)"
-      class="btn btn-default"
-    >
-      Register
-    </button>
-    <h4>Have an account?</h4>
-    <a routerLink="/login" class="btn btn-link">Login</a>
   </form>
 </div>
-</div>
-
-

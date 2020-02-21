@@ -1,41 +1,43 @@
-<div class="jumbotron">
-  <div class="row">
-    <div class="col-lg-4"></div>
-    <div class="col-lg-4">
-    <h3>User Login</h3>
-
-    <form [formGroup]="loginForm">
-      <div class="form-group">
-        <label>Email address</label>
-        <input
-          type="email"
-          formControlName="email"
-          class="form-control"
-          required
-        />
-      </div>
-      <div class="form-group">
-        <label>Password</label>
-        <input
-          type="password"
-          class="form-control"
-          formControlName="password"
-          required
-        />
-        <label class="error">{{ errorMessage }}</label>
-        <label class="success">{{ successMessage }}</label>
-      </div>
-      <button
-        type="submit"
-        (click)="tryLogin(loginForm.value)"
-        class="btn btn-default"
-      >
-        Login
+<p class="tip"></p>
+<div class="cont">
+  <form [formGroup]="loginForm">
+    <div class="form sign-in">
+      <h2>Welcome back,</h2>
+      <label>
+        <span>Email</span>
+        <input type="email" formControlName="email" />
+      </label>
+      <label>
+        <span>Password</span>
+        <input type="password" formControlName="password" />
+      </label>
+      <button type="button" (click)="tryLogin(loginForm.value)" class="submit">
+        Sign In
       </button>
-      <h4>Don't have an account?</h4>
-      <a routerLink="/register" class="btn btn-link">Register</a>
-    </form>
-  </div>
+      <button type="button" class="submit" routerLink="/register">
+        Sign up
+      </button>
+    </div>
+    <div class="sub-cont">
+      <div class="img">
+        <div class="img__text m--up">
+          <h2>New here?</h2>
+          <p>Sign up and discover great amount of new opportunities!</p>
+        </div>
+        <div class="img__text m--in">
+          <h2>One of us?</h2>
+          <p>If you already has an account, just sign in. We've missed you!</p>
+        </div>
+        <div class="img__btn">
+          <span class="m--up">
+            <button type="button" routerLink="/register" class="m--up">
+              Sign up
+            </button>
+          </span>
+
+          <span class="m--in">Sign In</span>
+        </div>
+      </div>
+    </div>
+  </form>
 </div>
-</div>
-<!-- <app-footer></app-footer> -->

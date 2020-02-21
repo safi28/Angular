@@ -6,19 +6,22 @@ import { AuthGuard } from "./auth/auth.guard";
 import { HomeComponent } from "./core/unLoggedHome/home.component";
 import { LoggedHomeComponent } from "././core/home/home.component";
 import { NotFoundComponent } from "./core/not-found/not-found.component";
-import { GuideComponent } from './core/guide/guide.component';
+import { GuideComponent } from "./core/guide/guide.component";
 
 const routes: Routes = [
   {
     path: "home",
     component: HomeComponent,
+    data: {
+      isLogged: false
+    }
   },
   {
     path: "dashboard",
     component: LoggedHomeComponent,
     data: { isLogged: true }
   },
-  {path: 'guide', component: GuideComponent},
+  { path: "guide", component: GuideComponent },
   {
     path: "login",
     component: LoginComponent,
