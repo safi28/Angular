@@ -23,7 +23,7 @@ export class ArticleService {
 
   createArticlTravel(article: Article) {
     return this.af.collection(`/travel`).add(article);
-  }
+  } 
 
   loadFoodArticle() {
     return this.af
@@ -58,12 +58,10 @@ export class ArticleService {
       );
   }
 
-
-
   loadArticle() {
     return this.af
       .collection<Article>(
-        `/${this.optionText}` ? `/travel` : `/${this.optionText}`
+        `/travel`
       )
       .snapshotChanges()
       .pipe(
@@ -80,4 +78,5 @@ export class ArticleService {
   selectCause(cause: Article) {
     (this as any).selectedArticle = cause;
   }
+
 }

@@ -14,9 +14,7 @@ export class LoggedHomeComponent implements OnInit {
   isLoggedUser: FormGroup;
 
   constructor(
-    af: AngularFireAuth,
     private fb: FormBuilder,
-    private router: Router
   ) {}
 
   ngOnInit() {
@@ -26,11 +24,4 @@ export class LoggedHomeComponent implements OnInit {
     });
   }
 
-  // get isLogged() {
-  //   if (this.authService.iSLoggedIn) {
-  //   // this.router.navigate(["/dashboard"]);
-  //     return true;
-  //   }
-  //   return false;
-  // }
 }

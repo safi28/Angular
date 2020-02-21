@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { Article } from "src/app/models/article";
 import { ArticleService } from "../article.service";
-import { AuthService } from 'src/app/auth/auth.service';
+import { AuthService } from "src/app/auth/auth.service";
 
 @Component({
   selector: "app-list",
@@ -19,8 +19,7 @@ export class ListComponent implements OnInit {
 
   constructor(
     private articleApi: ArticleService,
-    private articleService: ArticleService,
-    private user: AuthService  ) {}
+    private articleService: ArticleService) {}
 
   ngOnInit() {
     this.articleApi.loadArticle().subscribe(data => {
@@ -28,11 +27,8 @@ export class ListComponent implements OnInit {
     });
   }
 
-  isCreator() {
-    return !!this.user.loggedUser
-  }
-
   selectCauseHandler(cause: Article) {
     this.articleService.selectCause(cause);
   }
+  
 }

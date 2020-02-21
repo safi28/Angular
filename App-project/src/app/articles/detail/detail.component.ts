@@ -13,9 +13,6 @@ import { map } from "rxjs/operators";
   styleUrls: ["./detail.component.css"]
 })
 export class DetailComponent implements OnInit {
-  @Input() selectArticles2: Article;
-  @ViewChild(CreateComponent, { static: false }) detailKey;
-
   key: string;
   item: Observable<Article[]>;
   article: Article;
@@ -70,4 +67,5 @@ export class DetailComponent implements OnInit {
       .update({ like: this.likes })
       .then();
   }
+  
 }

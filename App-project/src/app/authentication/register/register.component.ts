@@ -1,10 +1,8 @@
-import { Component, OnInit, ViewChild } from "@angular/core";
+import { Component, OnInit, ViewChild, Input } from "@angular/core";
 import { FormGroup, Validators, FormControl } from "@angular/forms";
 import { Router } from "@angular/router";
 import { ToastrService } from "ngx-toastr";
 import { AuthService } from "../../auth/auth.service";
-import * as firebase from "firebase";
-import { UserService } from '../user.service';
 
 @Component({
   selector: "app-register",
@@ -13,16 +11,13 @@ import { UserService } from '../user.service';
 })
 export class RegisterComponent implements OnInit {
   personGender: string;
-  user: any;
   registerForm: FormGroup;
   registerF: FormGroup;
-  // username: string;
 
   constructor(
     private router: Router,
     private toastr: ToastrService,
-    private authService: AuthService,
-    private username: UserService
+    private authService: AuthService
   ) {}
   loading = false;
   submitted = false;
@@ -37,6 +32,7 @@ export class RegisterComponent implements OnInit {
           Validators.required,
           Validators.minLength(6)
         ]),
+
         passwordConfirm: new FormControl("", Validators.minLength(6))
       },
       this.passwordMatchValidator
@@ -49,42 +45,17 @@ export class RegisterComponent implements OnInit {
       : { mismatch: true };
   }
 
-  setGender(person) {
-    if (person == "Male") {
-      this.personGender = "Male";
-    }
-
-    if (person == "Female") {
-      this.personGender = "Female";
-    }
-  }
-
   tryRegister(value) {
     this.authService.doRegister(value).then(
       res => {
-        this.username = this.registerF.value.displayName;
-
-        var user = firebase.auth().currentUser;
-
-        user
-          .updateProfile({
-            displayName: this.username.userInfo()
-          })
-          .catch(function(error) {});
-        console.log(res);
-        console.log(this.username);
-
         this.toastr.success("Successfylly registered!", "Success");
         this.router.navigate(["/login"]);
       },
       error => {
-        this.toastr.error(error.error, "Error");
+        try {
+          this.toastr.error("Error");
+        } catch (e) {}
       }
     );
   }
-
-  get userData() {
-    return this.authService.userData;
-  }
-  
 }

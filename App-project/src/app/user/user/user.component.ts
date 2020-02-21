@@ -34,21 +34,9 @@ export class UserComponent implements OnInit {
     return this.userService.currentUser;
   }
 
-  gender() {
-    if (this.person.personGender === "Female") {
-      this.gen += "../../../assets/img/female.png";
-      return "f";
-    }
-
-    if (this.person.personGender === "Male") {
-      this.gen = "../../../assets/img/male.png";
-      return "m";
-    }
-  }
-
   onLogout() {
     localStorage.removeItem("user");
-
     this.authService.doLogout();
   }
+
 }

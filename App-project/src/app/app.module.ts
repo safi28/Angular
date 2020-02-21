@@ -4,7 +4,6 @@ import { NgModule } from "@angular/core";
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { HeaderComponent } from "./core/header/header.component";
-import { HomeComponent } from "./core/unLoggedHome/home.component";
 import { LoginComponent } from "./authentication/login/login.component";
 import {
   NoopAnimationsModule,
@@ -14,9 +13,8 @@ import { AppMaterialModule } from "./app-material/app-material.module";
 import { ReactiveFormsModule, FormsModule } from "@angular/forms";
 
 import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
-import { InterceptorService } from "./_services/interceptor.service";
+import { InterceptorService } from "./interceptor_service/interceptor.service";
 import { RegisterComponent } from "./authentication/register/register.component";
-import { UserService } from "./_services/user.service";
 import { ToastrModule } from "ngx-toastr";
 import { AngularFireModule } from "@angular/fire";
 import { AngularFireAuthModule } from "@angular/fire/auth";
@@ -27,10 +25,10 @@ import { CoreModule } from "./core/core.module";
 
 import { UserModule } from "./user/user.module";
 import { ArticlesModule } from "./articles/articles.module";
-import { AngularFireStorageModule } from '@angular/fire/storage';
-import { AngularFireDatabaseModule } from '@angular/fire/database';
-import { NotFoundComponent } from './core/not-found/not-found.component';
-import { MatGridListModule } from '@angular/material/grid-list';
+import { AngularFireStorageModule } from "@angular/fire/storage";
+import { AngularFireDatabaseModule } from "@angular/fire/database";
+import { NotFoundComponent } from "./core/not-found/not-found.component";
+import { MatGridListModule } from "@angular/material/grid-list";
 
 @NgModule({
   declarations: [
@@ -38,7 +36,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
     HeaderComponent,
     LoginComponent,
     RegisterComponent,
-    NotFoundComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,
@@ -50,7 +48,6 @@ import { MatGridListModule } from '@angular/material/grid-list';
     BrowserAnimationsModule,
     AppMaterialModule,
     MatGridListModule,
-
     HttpClientModule,
     ToastrModule.forRoot(),
     AngularFireModule.initializeApp(environment.firebase),

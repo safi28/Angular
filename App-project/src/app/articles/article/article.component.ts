@@ -1,10 +1,5 @@
 import { Component, OnInit, Input } from "@angular/core";
-import { ArticleService } from "../article.service";
 import { Article } from "src/app/models/article";
-import { AngularFirestore } from "@angular/fire/firestore";
-import { Observable } from "rxjs";
-import { ActivatedRoute } from "@angular/router";
-import { map } from 'rxjs/operators';
 
 @Component({
   selector: "app-article",
@@ -17,15 +12,7 @@ export class ArticleComponent implements OnInit {
   article$: Promise<Article>;
   id: string;
 
-  constructor(
-    private articleService: ArticleService,
-    private db: AngularFirestore,
-    private activatedRoute: ActivatedRoute
-  ) {
-  }
+  constructor() {}
 
-  ngOnInit() {
-    
-  }
-
+  ngOnInit() {}
 }

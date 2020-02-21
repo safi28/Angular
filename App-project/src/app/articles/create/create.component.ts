@@ -11,14 +11,10 @@ import { MatOption, MatSelectChange } from "@angular/material";
   styleUrls: ["./create.component.css"]
 })
 export class CreateComponent implements OnInit {
-  @Input("details") details: string;
-
   form: FormGroup;
   optionText: string;
   key: string;
 
-  private value = new EventEmitter<string>();
-  currentValue = this.value.asObservable();
 
   foods: Article[] = [
     { value: "travel", viewValue: "Travel" },
@@ -36,14 +32,14 @@ export class CreateComponent implements OnInit {
       title: ["", [Validators.required]],
       description: ["", Validators.required],
       imageUrl: ["", Validators.required],
-      like: [0,Validators.required]
+      like: [0, Validators.required]
     });
   }
 
   change(ev: MatSelectChange) {
     this.optionText = (ev.source.selected as MatOption).viewValue; // get the key of Option
     this.key = this.optionText.toLowerCase();
-    this.details = this.key;
+    console.log(this.key);
   }
 
   createArticleHandler(article) {

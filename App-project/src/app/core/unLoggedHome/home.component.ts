@@ -8,16 +8,10 @@ import { UserService } from "../../user/user.service";
   styleUrls: ["./home.component.css"]
 })
 export class HomeComponent implements OnInit {
-  public currentUser;
   constructor(private user: AuthService) {
-    this.currentUser = localStorage.getItem("user")
-      ? JSON.parse(localStorage.getItem("user"))
-      : "";
+   
   }
 
   ngOnInit() {}
 
-  get loggedUser() {
-    return this.user.iSLoggedIn;
-  }
 }
