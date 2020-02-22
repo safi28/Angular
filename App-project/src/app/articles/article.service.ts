@@ -1,6 +1,6 @@
-import { Injectable, Input } from "@angular/core";
+import { Injectable } from "@angular/core";
 import { Article } from "../models/article";
-import { tap, map } from "rxjs/operators";
+import { map } from "rxjs/operators";
 import { AngularFirestore } from "@angular/fire/firestore";
 import { Observable } from "rxjs";
 
@@ -23,7 +23,7 @@ export class ArticleService {
 
   createArticlTravel(article: Article) {
     return this.af.collection(`/travel`).add(article);
-  } 
+  }
 
   loadFoodArticle() {
     return this.af
@@ -56,10 +56,6 @@ export class ArticleService {
           })
         )
       );
-  }
-
-  selectCause(cause: Article) {
-    (this as any).selectedArticle = cause;
   }
 
 }

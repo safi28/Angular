@@ -18,7 +18,4 @@ export class FoodComponent implements OnInit {
     });
   }
 
-  selectCauseHandler(cause: Article) {
-    this.articleApi.selectCause(cause);
-  }
 }

@@ -27,8 +27,5 @@ export class ListComponent implements OnInit {
     });
   }
 
-  selectCauseHandler(cause: Article) {
-    this.articleService.selectCause(cause);
-  }
   
 }

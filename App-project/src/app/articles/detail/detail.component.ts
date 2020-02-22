@@ -1,11 +1,8 @@
-import { Component, OnInit, ViewChild, ElementRef, Input } from "@angular/core";
-import { ArticleService } from "../article.service";
+import { Component, OnInit } from "@angular/core";
 import { Article } from "src/app/models/article";
 import { ActivatedRoute, Router } from "@angular/router";
 import { Observable } from "rxjs";
 import { AngularFirestore } from "@angular/fire/firestore";
-import { CreateComponent } from "../create/create.component";
-import { map } from "rxjs/operators";
 
 @Component({
   selector: "app-detail",
@@ -13,9 +10,6 @@ import { map } from "rxjs/operators";
   styleUrls: ["./detail.component.css"]
 })
 export class DetailComponent implements OnInit {
-  key: string;
-  item: Observable<Article[]>;
-  article: Article;
   likes: number = 0;
 
   id: string;
