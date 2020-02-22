@@ -10,6 +10,7 @@ import { CoreModule } from "../core/core.module";
 @NgModule({
   declarations: [UserComponent, ProfileComponent],
   imports: [CommonModule, UserRoutingModule, ReactiveFormsModule, CoreModule],
-  exports: [ProfileComponent]
+  exports: [ProfileComponent],
+  
 })
 export class UserModule {}

@@ -12,10 +12,6 @@ export class FoodComponent implements OnInit {
 
   constructor(private articleApi: ArticleService) {}
 
-  get article() {
-    return this.articleApi;
-  }
-
   ngOnInit() {
     this.articleApi.loadFoodArticle().subscribe(data => {      
       this.articles = data;

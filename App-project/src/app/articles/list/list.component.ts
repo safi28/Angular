@@ -22,7 +22,7 @@ export class ListComponent implements OnInit {
     private articleService: ArticleService) {}
 
   ngOnInit() {
-    this.articleApi.loadArticle().subscribe(data => {
+    this.articleApi.loadTravelArticle().subscribe(data => {
       this.articles = data;
     });
   }

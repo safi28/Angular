@@ -58,23 +58,6 @@ export class ArticleService {
       );
   }
 
-  loadArticle() {
-    return this.af
-      .collection<Article>(
-        `/travel`
-      )
-      .snapshotChanges()
-      .pipe(
-        map(actions =>
-          actions.map(a => {
-            const data = a.payload.doc.data() as Article;
-            const id = a.payload.doc.id;
-            return { id, ...data };
-          })
-        )
-      );
-  }
-
   selectCause(cause: Article) {
     (this as any).selectedArticle = cause;
   }

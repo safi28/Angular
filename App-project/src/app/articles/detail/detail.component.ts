@@ -24,48 +24,42 @@ export class DetailComponent implements OnInit {
 
   isRouteComponent = false;
 
-  get selectedArticle() {
-    return this.articlesService.selectedArticle;
-  }
-
   constructor(
     private activatedRoute: ActivatedRoute,
-    private articlesService: ArticleService,
-    private db: AngularFirestore,
+    private af: AngularFirestore,
     private router: Router
   ) {
     this.activatedRoute.params.subscribe(params => (this.id = params.id));
   }
 
   ngOnInit() {
-    this.article$ = this.db.doc<Article>("travel/" + this.id).valueChanges();
-    this.articleFood = this.db.doc<Article>("food/" + this.id).valueChanges();
+    this.article$ = this.af.doc<Article>("travel/" + this.id).valueChanges();
+    this.articleFood = this.af.doc<Article>("food/" + this.id).valueChanges();
   }
 
   deleteFood() {
-    this.db.doc<Article>("food/" + this.id).delete();
+    this.af.doc<Article>("food/" + this.id).delete();
     this.router.navigate(["/food"]);
-  }
-
-  deleteTravel() {
-    this.db.doc<Article>("travel/" + this.id).delete();
-    this.router.navigate(["/list"]);
   }
 
   likeFood() {
     this.likes++;
-    this.db
+    this.af
       .doc<Article>("food/" + this.id)
       .update({ like: this.likes })
       .then();
   }
 
+  deleteTravel() {
+    this.af.doc<Article>("travel/" + this.id).delete();
+    this.router.navigate(["/list"]);
+  }
+
   likeTravel() {
     this.likes++;
-    this.db
+    this.af
       .doc<Article>("travel/" + this.id)
       .update({ like: this.likes })
       .then();
   }
-  
 }

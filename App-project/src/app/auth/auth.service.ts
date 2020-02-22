@@ -1,6 +1,4 @@
 import { Injectable } from "@angular/core";
-import { BehaviorSubject, Observable } from "rxjs";
-import { User } from "../models/user";
 import { AngularFireAuth } from "@angular/fire/auth";
 import { Router } from "@angular/router";
 import { ToastrService } from "ngx-toastr";
@@ -17,7 +15,7 @@ export class AuthService {
     private router: Router
   ) {}
 
-  doRegister(value: any) {  
+  doRegister(value: any) {
     return new Promise<any>((resolve, reject) => {
       firebase
         .auth()

@@ -16,13 +16,10 @@ export class TravelComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.articleApi.loadArticle().subscribe(data => {
+    this.articleApi.loadTravelArticle().subscribe(data => {
       this.articles = data;
     });
   }
 
-  selectCauseHandler(cause: Article) {
-    // this.selectCause.emit(cause);
-    this.articleApi.selectCause(cause);
-  }
+ 
 }
