@@ -19,13 +19,14 @@ const routes: Routes = [
       {
         path: "list",
         pathMatch: "full",
-        component: ListComponent
+        component: ListComponent,
+        canActivate: [AuthGuard]
       },
-      { path: "food", component: FoodComponent },
+      { path: "food", canActivate: [AuthGuard], component: FoodComponent },
       {
         path: "create",
         component: CreateComponent,
-        // canActivate: [AuthGuard],
+        canActivate: [AuthGuard],
         data: {
           isLogged: true
         }
@@ -34,7 +35,7 @@ const routes: Routes = [
       {
         path: "list/:id",
         component: DetailComponent,
-        // canActivate: [AuthGuard],
+        canActivate: [AuthGuard],
         data: {
           shouldFetchCause: true,
           isLogged: true
@@ -45,18 +46,34 @@ const routes: Routes = [
   {
     path: "",
     children: [
-      { path: "adventure", component: AdventureComponent },
-      { path: "relax", component: RelaxComponent },
-      { path: "landscapes", component: LandscapesComponent }
+      {
+        path: "adventure",
+        canActivate: [AuthGuard],
+        component: AdventureComponent
+      },
+      { path: "relax", canActivate: [AuthGuard], component: RelaxComponent },
+      {
+        path: "landscapes",
+        canActivate: [AuthGuard],
+        component: LandscapesComponent
+      }
     ]
   },
 
   {
     path: "",
     children: [
-      { path: "fast", component: FastFoodComponent },
-      { path: "home-made", component: HomeMadeComponent },
-      { path: "restaurant", component: RestaurantsComponent }
+      { path: "fast", canActivate: [AuthGuard], component: FastFoodComponent },
+      {
+        path: "home-made",
+        canActivate: [AuthGuard],
+        component: HomeMadeComponent
+      },
+      {
+        path: "restaurant",
+        canActivate: [AuthGuard],
+        component: RestaurantsComponent
+      }
     ]
   }
 ];
