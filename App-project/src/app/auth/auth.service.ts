@@ -3,18 +3,42 @@ import { AngularFireAuth } from "@angular/fire/auth";
 import { Router } from "@angular/router";
 import { ToastrService } from "ngx-toastr";
 import * as firebase from "firebase/app";
-import { first } from "rxjs/operators";
+import { first, shareReplay } from "rxjs/operators";
+import { BehaviorSubject } from "rxjs";
+import { User } from "./user";
+import { HttpClient } from "@angular/common/http";
 
 @Injectable({
   providedIn: "root"
 })
-
 export class AuthService {
+  currentUserSubject: BehaviorSubject<firebase.User>;
+  _user: firebase.User;
+
   constructor(
     public afAuth: AngularFireAuth,
     private toastr: ToastrService,
-    private router: Router
-  ) {}
+    private router: Router,
+    private http: HttpClient
+  ) {
+    afAuth.authState.subscribe(user => (this._user = user));
+  }
+
+  get user(): firebase.User {
+    return this._user;
+  }
+
+  set user(value: firebase.User) {
+    this._user = value;
+  }
+
+  get authenticated(): boolean {
+    return this._user !== null;
+  }
+
+  get id(): string {
+    return this.authenticated ? this.user.uid : '';
+  }
 
   doRegister(value: any) {
     return new Promise<any>((resolve, reject) => {
@@ -37,6 +61,8 @@ export class AuthService {
         .signInWithEmailAndPassword(value.email, value.password)
         .then(
           res => {
+            this.currentUserSubject.next(res.user);
+
             resolve(res);
           },
           err => reject(err)
@@ -56,8 +82,8 @@ export class AuthService {
     );
   }
 
-  isLoggedIn() {
-    return this.afAuth.authState.pipe(first()).toPromise();
+  get isLogged() {
+    return !!this.user;
   }
 
   get iSLoggedIn(): boolean {

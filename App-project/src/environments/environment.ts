@@ -16,7 +16,8 @@ export const environment = {
     projectId: "travellers-fdc03",
     storageBucket: "travellers-fdc03.appspot.com",
     messagingSenderId: "1008498601204",
-    appId: "1:1008498601204:web:f829cf998b523acad302a1"
+    appId: "1:1008498601204:web:f829cf998b523acad302a1",
+    apiURL: 'http://localhost:4200'
   }
 };
 

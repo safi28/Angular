@@ -11,34 +11,31 @@ import { GuideComponent } from "./core/guide/guide.component";
 const routes: Routes = [
   {
     path: "home",
+    pathMatch: 'full',
     component: HomeComponent,
-    data: {
-      isLogged: false
-    }
+    // canLoad: [AuthGuard],
+    // data: {
+    //   isLogged: false
+    // }
   },
   {
     path: "dashboard",
-    component: LoggedHomeComponent,
-    data: { isLogged: true }
+    component: LoggedHomeComponent
+    // canLoad: [AuthGuard],
+    // data: { isLogged: true }
   },
   { path: "guide", component: GuideComponent },
   {
     path: "login",
     component: LoginComponent,
-    canLoad: [AuthGuard],
-    data: {
-      isLogged: false
-    }
+    canActivate: [AuthGuard]
   },
   {
     path: "register",
     component: RegisterComponent,
-    canLoad: [AuthGuard],
-    data: {
-      isLogged: false
-    }
+    canActivate: [AuthGuard]
   },
-  // { path: "**/**", redirectTo: "" },
+  // { path: "**/**", redirectTo: "home" },
   { path: "**", component: NotFoundComponent }
 ];
 

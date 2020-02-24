@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
-import * as firebase from "firebase";
-import { RegisterComponent } from "../authentication/register/register.component";
+import { User } from "firebase";
+import { BehaviorSubject } from "rxjs";
 
 @Injectable({
   providedIn: "root"
@@ -22,5 +22,4 @@ export class UserService {
     this.currentUser = null;
     localStorage.removeItem("user");
   }
-  
 }

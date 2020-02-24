@@ -25,7 +25,7 @@ const routes: Routes = [
       {
         path: "create",
         component: CreateComponent,
-        canActivate: [AuthGuard],
+        // canActivate: [AuthGuard],
         data: {
           isLogged: true
         }
@@ -34,7 +34,7 @@ const routes: Routes = [
       {
         path: "list/:id",
         component: DetailComponent,
-        canActivate: [AuthGuard],
+        // canActivate: [AuthGuard],
         data: {
           shouldFetchCause: true,
           isLogged: true
