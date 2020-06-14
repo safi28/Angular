@@ -1,0 +1,11 @@
+.jumbotron {
+    background-image: url('../../../assets/img/vector.jpg');
+    background-size: cover;
+}
+
+.example-card {
+    max-width: 400px;
+    left: 35%;
+    bottom: 40px;
+}
+

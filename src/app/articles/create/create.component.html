@@ -1,0 +1,68 @@
+<div class="container">
+<div class="col-md-4"></div>
+<div class="col-md-4">
+  <h1 class="text-italic">Create your article</h1>
+  <form [formGroup]="form">
+    <div class="form-group">
+      <p></p>
+      <label for="article">Article</label>
+      <input
+        type="text"
+        formControlName="title"
+        id="title"
+        class="form-control"
+        placeholder="My article is ..."
+        minlength="10"
+      />
+    </div>
+    <mat-form-field>
+      <mat-label>Select type</mat-label>
+      <mat-select (selectionChange)="change($event)">
+        <mat-option *ngFor="let food of foods" [value]="food.value">
+          {{food.viewValue}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <div class="form-group">
+      <label for="description">Description</label>
+      <textarea
+        formControlName="description"
+        id="description"
+        cols="30"
+        rows="10"
+        class="form-control cause-description"
+        placeholder="A little bit information about your opinion for this article"
+      ></textarea>
+    </div>
+    <p
+      class="error-message"
+      *ngIf="form.get('description').invalid && form.get('description').touched"
+    >
+    </p>
+    <div class="form-group">
+      <label for="imageUrl">Image URL</label>
+      <input
+        type="text"
+        id="imageUrl"
+        formControlName="imageUrl"
+        class="form-control"
+        placeholder="https://..."
+        pattern="https?:\/\/.*"
+      />
+    </div>
+    <p
+      class="error-message"
+      *ngIf="form.get('imageUrl').invalid && form.get('imageUrl').touched"
+    >
+      Please provice valid url
+    </p>
+    <button
+      type="submit"
+      (click)="createArticleHandler(form.value)"
+      class="btn btn-primary"
+    >
+      Create
+    </button>
+  </form>
+</div>
+</div>

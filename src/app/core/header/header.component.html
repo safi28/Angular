@@ -1,0 +1,17 @@
+<mat-toolbar class="black">
+  <span *ngIf="isLogged"> 
+    <a routerLink="/dashboard" class="logoImg">
+      <img src="../../assets/img/home.png" class="angular-logo" />
+    </a>
+  </span>
+  <span *ngIf="!isLogged">
+    <a routerLink="/home" class="logoImg">
+      <img src="../../assets/img/home.png" class="angular-logo" />
+    </a>
+  </span>
+
+  <span *ngIf="!isLogged">
+    <button mat-button routerLink="login">Login</button>
+    <button mat-button routerLink="register">Register</button>
+  </span>
+</mat-toolbar>
