@@ -1,7 +1,13 @@
-# Angular
-SoftUni course
-# 
-These projects were generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.21.
+* This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.22.
+# Tools
+* Angular material
+* CSS Animations
+# Deployed on Firebase server
+* When clicking on the hosting link click on the home icon, due to the slash that Angular doesn't like ;/ 🔈
+* https://travellers-fdc03.web.app
+
+# Project setup locally
+* npm install
 
 ## Development server
 
