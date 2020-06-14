@@ -1,2 +1,0 @@
-# Compiles 
-* npm install
